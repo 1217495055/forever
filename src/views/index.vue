@@ -12,7 +12,11 @@
 			<mt-swipe-item><img src="../img/轮播图3.jpg" alt=""></mt-swipe-item>
 			<mt-swipe-item><img src="../img/轮播图4.jpg" alt=""></mt-swipe-item>
 		</mt-swipe>
-		<h3>首页</h3>
+    <!-- 消息播报 -->
+		<div class='laba'>
+      <img src="../img/laba.jpg" alt="">
+      <span>{{msg}}</span>
+    </div>
   </div>
 </template>
 
@@ -21,13 +25,23 @@
 export default {
     data(){
         return{
-            lunbotuList:[]  //保存轮播图的数组
+            lunbotuList:[],  //保存轮播图的数组
+            msg:'走过路过，千万不要错过~~~~~~~fa,efgalwrefgalwertfgrg!',
         }
     },
     created(){
         this.getLunbotu();
+        this.lang();
     },
     methods:{
+      lang(){
+        if(this.intervalId!=null){return}
+        this.intervalId = setInterval(()=>{
+            var start = this.msg.substring(0,1);
+          var end = this.msg.substring(1);
+          this.msg = end + start
+          },800)
+        },
         getLunbotu(){
             // 获取轮播图数据
             this.axios.get('http://127.0.0.1:3000/user/lunbotu').then(result=>{
@@ -77,6 +91,25 @@ export default {
 }
 .mui-media-body{
 	font-size: 12px;
+}
+.laba{
+  width:100%;
+  height:20px;
+  margin: 6px 0 4px;
+}
+.laba img{
+  width:20px;
+  height:20px;
+  float: left;
+  margin:0 6px 0 20px;
+}
+.laba span{
+  display: inline-block;
+  width:80%;
+  height:100%;
+  font-size: 14px;
+  color:#666;
+  overflow: hidden;
 }
 </style>
 
