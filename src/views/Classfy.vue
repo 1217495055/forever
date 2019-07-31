@@ -1,34 +1,30 @@
 <template>
     <div>
         <div class="classify-header clearfix">
-	        <span class="f-l">
-	        	<
-	        </span>
-	        <div class="search-box f-l">
-	        	<span>
-	        		O
-	        	</span>
+	        <span class="f-l mui-icon mui-icon-back"></span>
+	        <div class="search-box f-r">
+	        	<span class="mui-icon mui-icon-search"></span>
 	        	<input type="text" placeholder="请输入搜索内容">
 	        </div>
 	    </div>
 	    <div class="clearfix p-r">
-	    	<div class="classify-menu p-a">
+	    	<div class="classify-menu">
 				<ul>
-					<li>热门推荐</li>
-					<li>鲜花</li>
-					<li>永生花</li>
-					<li>蛋糕</li>
-					<li>巧克力</li>
-					<li>特色礼品</li>
-					<li>礼篮</li>
-					<li>绿植花卉</li>
+					<li @click="goto" data-to="flower1">热门推荐</li>
+					<li @click="goto" data-to="flower2">鲜花</li>
+					<li @click="goto" data-to="flower3">永生花</li>
+					<li @click="goto" data-to="flower4">蛋糕</li>
+					<li @click="goto" data-to="flower5">巧克力</li>
+					<li @click="goto" data-to="flower6">特色礼品</li>
+					<li @click="goto" data-to="flower7">礼篮</li>
+					<li @click="goto" data-to="flower8">绿植花卉</li>
 				</ul>
 			</div>
+			
 			<div class="menu-content p-a">
-				<a href="javascript:;">
-				</a>
-				<div class="details-list">
-					<ul class="flower1">
+				<div class="details-list" id="tab">
+					<ul id="flower1">
+						<a href="javascript:;"></a>
 						<li class="details-item">
 							<a href="javascript:;">
 								<img src="../img/m_home_use_birthday.png"/>
@@ -79,7 +75,8 @@
 						</li>
 						
 					</ul>	
-					<ul class="flower2 hide">
+					<ul id="flower2">
+						<a href="javascript:;"></a>
 						<div class="nav-title">
 							<span>鲜花</span>
 							<span class="f-r">鲜花排行榜&gt;</span>
@@ -103,7 +100,8 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="flower3 hide">
+					<ul id="flower3">
+						<a href="javascript:;"></a>
 						<div class="nav-title">
 							<span>永生花</span>
 							<span class="f-r">永生花排行榜&gt;</span>
@@ -127,7 +125,8 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="flower4 hide">
+					<ul id="flower4">
+						<a href="javascript:;"></a>
 						<div class="nav-title">
 							<span>精选品牌蛋糕</span>
 						</div>
@@ -147,7 +146,33 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="flower5 hide">
+					<ul id="flower5">
+						<a href="javascript:;"></a>
+						<div class="nav-title">
+							<span>巧克力</span>
+							<span class="f-r">巧克力排行榜&gt;</span>
+						</div>
+						<li class="details-item">
+							<a href="javascript:;">
+								<img src="../img/m_home_use_birthday.png"/>
+								<span>全部</span>
+							</a>
+						</li>
+						<li class="details-item">
+							<a href="javascript:;">
+								<img src="../img/m_home_use_birthday.png"/>
+								<span>爱情鲜花</span>
+							</a>
+						</li>
+						<li class="details-item">
+							<a href="javascript:;">
+								<img src="../img/m_home_use_birthday.png"/>
+								<span>老师长辈</span>
+							</a>
+						</li>
+					</ul>
+					<ul id="flower6">
+						<a href="javascript:;"></a>
 						<div class="nav-title ">
 							<ul class="recommend">
 								<li><p>礼品上新</p></li>
@@ -178,7 +203,8 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="flower6 hide">
+					<ul id="flower7">
+						<a href="javascript:;"></a>
 						<div class="nav-title">
 							<span>礼篮</span>
 						</div>
@@ -190,7 +216,8 @@
 						</li>
 						
 					</ul>
-					<ul class="flower7 hide">
+					<ul id="flower8">
+						<a href="javascript:;"></a>
 						<div class="nav-title">
 							<span>绿植花卉</span>
 						</div>
@@ -222,28 +249,50 @@
 export default {
     data() {
         return {
-            
+			
         }
     },
+    methods: {
+        goto(e){
+		  var toId=e.target.dataset.to;
+		  var ulId=document.getElementById(toId);
+		  var all=document.querySelectorAll(".details-list>ul");
+		  for(var i=0;i<all.length;i++){
+			  all[i].style.display='none'
+		  }
+		  console.log(all);
+		  ulId.style.display='block';
+		}
+	},
+	
 }
 </script>
 <style>
-@import url('../../public/css/reset.css');
 input{outline:none;}
 .app-container {
     padding: 0; 
     overflow: visible;
 }
+.mint-header.is-fixed{
+	display: none;
+}
 input{outline:none;}
 .hide{display: none;}
 .classify-header{
+	position: fixed;
 	line-height: 44px;
-	padding: 4px 12px ;
+	padding: 4px 8px ;
 	box-sizing: border-box;
 	border-bottom: 3px solid #f1f3f6;
+	z-index: 99;
+	width: 100%;
+    background: #fff;
+}
+.details-list>ul+ul{
+	display: none;
 }
 .classify-header>.search-box{
-	/*width: 85%;*/
+	width: 85%;
 	margin-left:12px; ;
 	padding: 0 12px ;
 	box-sizing: border-box;
@@ -253,23 +302,23 @@ input{outline:none;}
 	font-size: 14px;
 }
 .classify-header>span{
-	font-size: 20px;
+	font-size: 30px;
+	margin-top: 8px;
 }
 .search-box>input{
 	border: none;
     width: 80%;
-    margin-left: 10px;
     background: transparent;
-    font-size: 16px;
+	font-size: 16px;
+	margin-bottom: 0;
 }
-.classify-menu{
-	top:0;
-	left: 0;
-	bottom: 3.5rem;
-	width: 6rem;
-}
+
 .classify-menu>ul{
-	height: 600px;
+	width: 28%;
+	position: fixed;
+	top:9%;
+	left: 0;
+	bottom: 8%;
 	border-right:3px solid #f1f3f6 ;
 }
 .classify-menu>ul li{
@@ -282,27 +331,24 @@ input{outline:none;}
 	padding-top:10px ;
 }
 .menu-content{
-	width: 20rem;
-	top: 0;
-	left: 6.0rem;
-	bottom: 3.5rem;
-}
-.menu-content>a{
-	width: 16.5rem;
-    display: block;
-    height: 8rem;
-    margin: 8px;
-    background: url(../img/18_shizizuo_m.jpg) no-repeat;
-    background-size: 100% 100%;
+	top: 3.4rem;
+    left: 28%;
+    bottom: 3.5rem;
 }
 .details-list>ul{
-	width: 280px;
 	font-size: 0;
 	padding: 0.5rem;
 }
 .details-list>ul>li{
-	width: 85px;
-	float: left;
+	width:33.3%;
+	display: inline-block;
+}
+.details-list>ul>a{
+	display: block;
+	height: 6.6rem;
+	margin-bottom:1rem; 
+    background: url(/img/18_shizizuo_m.4bd04ce7.jpg) no-repeat;
+    background-size: 100% 100%;
 }
 .details-item>a{
 	display: block;
@@ -313,12 +359,11 @@ input{outline:none;}
 }
 .details-item>a img{
 	border-radius:50% ;
-	width: 3.4rem;
-	margin-left: 16px;
+	width: 80%;
+	margin-left:10%;
 }
 .details-item>a span{
 	display: block;
-	width: 90px;
 	text-align: center;
 }
 .nav-title{

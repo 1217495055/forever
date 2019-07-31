@@ -46,6 +46,7 @@
     /* 当前组件专有的样式内容 */
 	@import url('./lib/mui/css/mui.min.css');
 	@import url('./lib/mui/css/icons-extra.css');
+	@import url('../public/css/reset.css');
 .app-container {
   padding-top: 40px;
 	padding-bottom: 50px;
