@@ -1,8 +1,7 @@
 <template>
   <div class="app-container">
-
-    <!-- 顶部 Header 区域 -->
-    <mt-header fixed title="遇见更美的你"></mt-header>
+	  <!-- 头部 -->
+	  <my-header></my-header>
 
 
     <!-- 中间的 路由 router-view 区域 -->
@@ -10,62 +9,36 @@
 			<router-view></router-view>
 		</transition>
 
+	<!-- 尾部 -->
+	<my-footer></my-footer>
 
-    <!-- 底部 Tabbar 区域 -->
-    <nav class="mui-bar mui-bar-tab">
-			<router-link class="mui-tab-item" to="/">
-				<span class="mui-icon mui-icon-home"></span>
-				<span class="mui-tab-label">首页</span>
-			</router-link>
-			<router-link class="mui-tab-item" to="/member">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">会员</span>
-			</router-link>
-			<router-link class="mui-tab-item" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-					<span class="mui-badge">0</span>
-				</span>
-				<span class="mui-tab-label">购物车</span>
-			</router-link>
-			<router-link class="mui-tab-item" to="/search">
-				<span class="mui-icon mui-icon-search"></span>
-				<span class="mui-tab-label">搜索</span>
-			</router-link>
-		</nav>
 
   </div>
 </template>
 
 <script>
+// 引入头部和尾部
+import header from "./views/header"
+import footer from './views/footer'
+export default {
+	data(){
+		return{}
+	},
+	// 2 注册头部和底部
+    components: {
+        "my-header":header,
+        // 注册
+        'my-footer':footer,
+    },
+}
 </script>
 
 
 
 
-<style>
-    /* 当前组件专有的样式内容 */
-	@import url('./lib/mui/css/mui.min.css');
-	@import url('./lib/mui/css/icons-extra.css');
-.app-container {
-  padding-top: 40px;
-	padding-bottom: 50px;
-  overflow-x: hidden;
-}
 
-.v-enter {
-  opacity: 0;
-  transform: translateX(100%);
-}
+<style scoped>
 
-.v-leave-to {
-  opacity: 0;
-  transform: translateX(-100%);
-  position: absolute;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.5s ease;
-}
 </style>
+
 

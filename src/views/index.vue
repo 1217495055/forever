@@ -2,15 +2,10 @@
   <div>
 		<!-- 轮播图区域 -->
 		<mt-swipe :auto='4000'>
-            <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
-            <!-- <mt-swipe-item v-for="(item,i) of lunbotuList" :key="i">
-                {{item.img_url}}
-                <img :src='require(item.img_url)' alt="">
-            </mt-swipe-item> -->
-			<mt-swipe-item><img src="../img/轮播图1.jpg" alt=""></mt-swipe-item>
-			<mt-swipe-item><img src="../img/轮播图2.jpg" alt=""></mt-swipe-item>
-			<mt-swipe-item><img src="../img/轮播图3.jpg" alt=""></mt-swipe-item>
-			<mt-swipe-item><img src="../img/轮播图4.jpg" alt=""></mt-swipe-item>
+      <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
+      <mt-swipe-item v-for="(item,i) of lunbotuList" :key="i">
+          <img :src='require("../"+item.img_url)' alt="">
+      </mt-swipe-item>
 		</mt-swipe>
     <!-- 四个bar -->
     <div class='four-bar'>
@@ -197,6 +192,7 @@
           </div>
         </a>
       </div>
+      <my-showlist></my-showlist>
       <!-- 查看更多 -->
       <div class='more'>
         <a href="javascript:;">查看更多</a>
@@ -235,7 +231,11 @@
 
 
 <script>
+import showlist from './showlist'
 export default {
+  components: {
+        "my-showlist":showlist,
+    },
     data(){
         return{
             lunbotuList:[],  //保存轮播图的数组
@@ -257,7 +257,6 @@ export default {
         getLunbotu(){
             // 获取轮播图数据
             this.axios.get('http://127.0.0.1:3000/user/lunbotu').then(result=>{
-                console.log(result.data.message[0].img_url)
                 if(result.data.status==0){
                     this.lunbotuList = result.data.message;
                 }else{
@@ -274,10 +273,15 @@ export default {
 <style>
 @import url('../../public/css/reset.css');
 .mint-swipe{
-    height:200px !important;
+    height:240px !important;
+}
+.mint-swipe-items-wrap {
+    margin-top: 50px;
+    height:79% !important;
 }
 .mint-swipe-item img{
     width:100%;
+    height:190px;
 }
 .mui-grid-view.mui-grid-9{
 	background-color: #fff;
@@ -315,8 +319,8 @@ p{
   display: inline-block;
   width:80%;
   height:100%;
-  font-size: 14px;
-  color:#666;
+  font-size: 12px;
+  color:#a91808;
   overflow: hidden;
 }
 .four-bar{
@@ -335,6 +339,7 @@ p{
   font-size: 12px;
   background-color: #000;
   border-radius:50%; 
+  margin-right: 2px;
 }
 .four-bar a span{
   color:#666;
@@ -348,6 +353,14 @@ p{
   .yimiao{
       width:100%;
       font-size: 10px;
+  }
+  .yimiao p{
+    color:#505056;
+    font-size: 14px;
+    margin-top:10px;
+  }
+  .yimiao .title{
+    margin-top:2px;
   }
   .yimiao .title>span{
     background-color: #473e3e;
@@ -375,21 +388,21 @@ p{
       height:120px;
   }
   .yimiao .friends>div:first-child{
-      background:url('../img/4.png') no-repeat;
+      background:url('../img/m_home_use_love.png') no-repeat;
       background-size:100% 100%;
   }
   .yimiao .friends>div:nth-child(2){
-      background:url('../img/4.png') no-repeat;
+      background:url('../img/m_home_use_parent.png') no-repeat;
       background-size:100% 100%;
   }
   .yimiao .friends>div:nth-child(3){
-      background:url('../img/4.png') no-repeat;
+      background:url('../img/m_home_use_friend.png') no-repeat;
       background-size:100% 100%;
   }
   .yimiao .birthday>div{
       width:24%;
       height:100px;
-      background:url('../img/6.png') no-repeat;
+      background:url('../img/m_home_use_birthday.png') no-repeat;
       background-size:100% 100%;
       text-align: center;
       position: relative;
@@ -398,7 +411,7 @@ p{
       position: relative;
       width:50%;
       height:120px;
-      background:url('../img/8.jpg') no-repeat;
+      background:url('../img/m_home_ranklist.png') no-repeat;
       background-size:100% 100%;
       margin-right: 2px;
   }
