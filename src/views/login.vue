@@ -7,7 +7,7 @@
         <!-- 登录信息 -->
         <div class='info'>
             <!-- 1 用户名输入框 -->
-            <div><input :placeholder="unameholder" v-model='uname' type='text'><i   v-show='uname?true:false' @click='reset1'>x</i></div>
+            <div><input :placeholder="unameholder" v-model='uname' type='text' maxlength="12"><i   v-show='uname?true:false' @click='reset1'>x</i></div>
             <!-- 2密码输入框 -->
             <div><input :placeholder="upwdholder" v-model='upwd' type='text' v-if='check' maxlength="18"><input :placeholder="upwdholder" v-model='upwd' type='password' v-else maxlength="18"><i v-show='upwd?true:false' @click='reset2'>x</i><img :src='status' @click='chang' class='show_img'>
             </div>
@@ -33,10 +33,10 @@
         <div class='logo'><p>Hua.com花礼网</p></div>
         <!-- 登录信息 -->
         <div class='info'>
-            <!-- 1 用户名输入框 -->
+            <!-- 1 手机号输入框 -->
             <div><input :placeholder="phoneholder" v-model='phone' type='text' maxlength="11"><i   v-show='phone?true:false' @click='reset3'>x</i></div>
-            <!-- 2密码输入框 -->
-            <div><input :placeholder="valholder" v-model='val' type='text'><i v-show='val?true:false' @click='reset4'>x</i><span class='val' @click='getval' v-text="msg"></span>
+            <!-- 2验证码输入框 -->
+            <div><input :placeholder="valholder" v-model='val' type='text' maxlength="6"><i v-show='val?true:false' @click='reset4'>x</i><span class='val' @click='getval' v-text="msg"></span>
             </div>
             <!-- 3 登录按钮 -->
             <a href='javascript:;' @click='login' v-text="text"></a>
@@ -153,14 +153,14 @@ export default {
             // 如果login为假，则执行手机号验证
             }else{
                 this.phone = this.phone.replace(/(^\s*)|(\s*$)/g, "");
-                this.val = this.val.replace(/(^\s*)|(\s*$)/g, "");
+                this.val = this.val.replace(/(^\s*)|(\s*$)/ig, "");
                 if(!this.phone){this.$toast('手机号不能为空');return};
                 if(!this.val){this.$toast('请输入验证码');return};
                 if(this.phone.length!=11){this.$toast('请输入合法的手机号');return};
                 if(this.val.length!=6){this.$toast('验证码输入错误');return};
                 // 手机号，验证码正则
-                if(/^1[3-8]\d{9}$/i.test(this.phone)){
-                    if(/^[0-9a-z]{6}$/i.test(this.val)){
+                if(/^1[3-8]\d{9}$/.test(this.phone)){
+                    if(this.val==this.code.toLowerCase()){
                         // 4 用户验证失败 提示段消息 5 密码验证失败，提示段消息   6 发送ajax请求
                         var obj = {phone:this.phone}
                         this.axios.get('phone',{params:obj}).then(res=>{
