@@ -17,6 +17,17 @@
 </template>
 
 <script>
+methods: {
+		(function(){
+			//rem布局
+			//1.获取元素 html，注意getElementsByTagName返回的是元素的集
+			var html=document.getElementsByTagName('html');
+			//2.获取用户设配物理宽度
+			var width=window.screen.width;
+			//设计图以I6尺寸的话，我是/15，然后1rem=25px;看个人喜好
+			html[0].style.fontSize=width/15+'px';
+		})()
+	}
 // 引入头部和尾部
 // import header from "./views/header"
 // import footer from './views/footer'
