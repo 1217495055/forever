@@ -5,8 +5,13 @@ import store from './store'
 
 // 导入axios模块
 import axios from 'axios'
-// 将axios添加到原型对象中
+// 配置axios 基础路径
+axios.defaults.baseURL='http://127.0.0.1:3000/user/';
+// 配置axios保存session信息
+axios.defaults.withCredentials=true;
+// 由于axios不支持use，将axios添加到原型对象中
 Vue.prototype.axios = axios;
+
 // 引入组件库
 import MintUI from "mint-ui" 
 // 单独引入样式文件  

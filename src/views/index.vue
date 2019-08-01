@@ -1,5 +1,6 @@
 <template>
   <div>
+    <my-header></my-header>
 		<!-- 轮播图区域 -->
 		<mt-swipe :auto='4000'>
       <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
@@ -226,15 +227,20 @@
 				<div class="mui-media-body">500万用户信赖好评</div></a></li>
 		</ul>
     </div>
+    <my-footer></my-footer>
   </div>
 </template>
 
 
 <script>
+import header from './header'
+import footer from './footer'
 import showlist from './showlist'
 export default {
   components: {
         "my-showlist":showlist,
+        "my-header":header,
+        "my-footer":footer,
     },
     data(){
         return{
@@ -256,7 +262,7 @@ export default {
         },
         getLunbotu(){
             // 获取轮播图数据
-            this.axios.get('http://127.0.0.1:3000/user/lunbotu').then(result=>{
+            this.axios.get('lunbotu').then(result=>{
                 if(result.data.status==0){
                     this.lunbotuList = result.data.message;
                 }else{
