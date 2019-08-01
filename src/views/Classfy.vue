@@ -283,7 +283,7 @@ input{outline:none;}
 	line-height: 44px;
 	padding: 4px 8px ;
 	box-sizing: border-box;
-	border-bottom: 3px solid #f1f3f6;
+	border-bottom: 2px solid #f1f3f6;
 	z-index: 99;
 	width: 100%;
     background: #fff;
@@ -319,7 +319,7 @@ input{outline:none;}
 	top:2.22rem;
 	left: 0;
 	bottom: 8%;
-	border-right:3px solid #f1f3f6 ;
+	border-right:2px solid #f1f3f6 ;
 }
 .classify-menu>ul li{
 	line-height: 32px;
@@ -346,7 +346,7 @@ input{outline:none;}
 }
 .details-list>ul>a{
 	display: block;
-	height: 6.6rem;
+	height: 5rem;
 	margin-bottom:1rem; 
     background: url(../img/18_shizizuo_m.jpg) no-repeat;
     background-size: 100% 100%;
@@ -368,10 +368,11 @@ input{outline:none;}
 	text-align: center;
 }
 .nav-title{
-	line-height: 28px;
-    margin-bottom: 12px;
+	line-height: 1.25rem;
+    margin-bottom: 0.5rem;
+	padding: 0 0.25rem;
     font-size: 0.5rem;
-    border-bottom: 1px solid #E9ECF0;
+    border-bottom: 2px solid #E9ECF0;
 }
 
 .diamonds>a>img{
