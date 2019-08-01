@@ -1,11 +1,9 @@
 <template>
         <!-- 顶部 Header 区域 -->
     <div class='my_header'>
-        <div class='clealfix'>
-            <a href="javascript:;"><img src="../img/01.png" alt=""></a>
-            <a href="javascript:;">Hua.com花礼网</a>
-            <a href="javascript:;"><img src="../img/01.png" alt=""></a>
-        </div>
+        <a href="javascript:;"><span class="iconfont icon-sousuo1"></span></a>
+        <a href="javascript:;">Hua.com花礼网</a>
+        <a href="javascript:;"><span class="iconfont icon-lianxi"></span></a>
     </div>
 </template>
 
@@ -21,30 +19,36 @@ export default {
     background-color: #375043;
     height:50px !important;
     display: flex;
-    /* justify-content: space-between; */
-    justify-content: space-around;
+    justify-content: space-between;
     position: fixed;
     width:100%;
     z-index: 999;
     top:0;
     text-align: center;
+    line-height: 60px;
 }
-.my_header .clealfix{
-    display: flex;
-    justify-content: space-between;
-    width:100%;
-    height:32px;
-    margin-top: 18px;
-}
-.my_header .clealfix a{
+.my_header a:nth-child(2){
     color:#fa7552;
     font-size: 20px;
     font-weight: bold;
+    margin:0 10%;
 }
-.my_header a>img{
+.my_header a:nth-child(1){
+    margin-left:5%;
+    margin-bottom: 3%;
+}
+.my_header a:nth-child(3){
+    margin-right:5%;
+}
+.my_header a>span{
     display: inline-block;
-    background-color: #fff;
-    width:40%;
-    height:52%;
+    color: #fff;
+}
+.my_header .icon-sousuo1,.icon-lianxi{
+    font-size: 24px;
+    color:#fff;
+}
+.my_header .icon-lianxi{
+    font-size: 32px;
 }
 </style>

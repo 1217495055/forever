@@ -91,7 +91,7 @@
             <p>经典暴款，年销售冠军</p>
             <div class='pri_shop'>
               <div class='price'><span>￥234<i>￥315</i></span><span>已销售6.4万件</span></div>
-              <div class='shopcart'><img src="../img/02.png" alt=""></div>
+              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
             </div>
           </div>
         </a>
@@ -111,7 +111,7 @@
             <p class='top_bot'>经典暴款，年销售冠军</p>
             <div class='pri_shop'>
               <div class='price'><span>￥234<i>￥315</i></span><span>已销售6.4万件</span></div>
-              <div class='shopcart'><img src="../img/02.png" alt=""></div>
+              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
             </div>
           </div>
         </a>
@@ -142,7 +142,7 @@
             <p>精品玫瑰礼盒：19枝红玫瑰，勿忘我0.1扎</p>
             <div class='pri_shop'>
               <div class='price'><span>￥234<i>￥315</i></span><span>已销售6.4万件</span></div>
-              <div class='shopcart'><img src="../img/02.png" alt=""></div>
+              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
             </div>
           </div>
         </a>
@@ -157,7 +157,7 @@
             <span class='ret_count'>人气推荐</span>
             <div class='pri_shop'>
               <div class='price'><span>￥234<i>￥315</i></span><span>已销售6.4万件</span></div>
-              <div class='shopcart'><img src="../img/02.png" alt=""></div>
+              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
             </div>
           </div>
         </a>
@@ -173,7 +173,7 @@
             <p>精品玫瑰礼盒：19枝红玫瑰，勿忘我0.1扎</p>
             <div class='pri_shop'>
               <div class='price'><span>￥234<i>￥315</i></span><span>已销售6.4万件</span></div>
-              <div class='shopcart'><img src="../img/02.png" alt=""></div>
+              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
             </div>
           </div>
         </a>
@@ -188,7 +188,7 @@
             <span class='ret_count'>人气推荐</span>
             <div class='pri_shop'>
               <div class='price'><span>￥234<i>￥315</i></span><span>已销售6.4万件</span></div>
-              <div class='shopcart'><img src="../img/02.png" alt=""></div>
+              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
             </div>
           </div>
         </a>
@@ -207,22 +207,22 @@
     <div>
       <!-- 六宫格 -->
 		<ul class="mui-table-view mui-grid-view mui-grid-9">
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newlist">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><router-link to="/home/newlist">
 				<img src="../img/timg.jpg" alt="">
 				<div class="mui-media-body">获评鲜花龙头企业</div></router-link></li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
 				<img src="../img/timg.jpg" alt="">
 				<div class="mui-media-body">1~3小时送花上门</div></a></li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
 				<img src="../img/timg.jpg" alt="">
 				<div class="mui-media-body">赛事冠军花艺师团队</div></a></li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
 				<img src="../img/timg.jpg" alt="">
 				<div class="mui-media-body">严选花材</div></a></li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
 				<img src="../img/timg.jpg" alt="">
 				<div class="mui-media-body">12道严苛品控标准</div></a></li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
 				<img src="../img/timg.jpg" alt="">
 				<div class="mui-media-body">500万用户信赖好评</div></a></li>
 		</ul>
@@ -336,6 +336,7 @@ p{
   text-align: center;
   display: flex;
   justify-content: space-around;
+  box-sizing: border-box;
 }
 .four-bar a i{
   width:12px;

@@ -19,6 +19,11 @@ import "mint-ui/lib/style.css"
 
 Vue.config.productionTip = false
 
+// 引入字体图标库
+import "./font/iconfont.css"
+
+// 引入字体图标库
+import "./font/icon1/iconfont.css"
 // 将 MitUi 注册给 Vue 实例
 Vue.use(MintUI)
 

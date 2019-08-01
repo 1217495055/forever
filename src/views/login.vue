@@ -26,14 +26,14 @@ export default {
             uname:'',    //用户名
             upwd:'',       //密码
             check:false,
-            status:require('../img/yan1.png'),
+            status:require('../img/yincang.png'),
         }
         
     },
     methods:{
         chang(){
             this.check = this.check?false:true;
-            this.status = this.check?require('../img/yan2.png'):require('../img/yan1.png');   
+            this.status = this.check?require('../img/xianshi.png'):require('../img/yincang.png');   
         },
         // 关闭按钮
         close(){

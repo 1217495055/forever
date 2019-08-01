@@ -21,12 +21,13 @@
 				<span class="mui-tab-label">搜索</span>
 			</router-link>
 		</nav>
+
     </div>
 </template>
 
 <script>
 export default {
-    
+	
 }
 </script>
 
@@ -56,4 +57,5 @@ export default {
 .v-leave-active {
   transition: all 0.5s ease;
 }
+
 </style>
