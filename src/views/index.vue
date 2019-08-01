@@ -330,7 +330,6 @@ p{
   overflow: hidden;
 }
 .four-bar{
-  width:100%;
   height:16px;
   margin: 2px 5px;
   text-align: center;
