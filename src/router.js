@@ -10,6 +10,8 @@ import product from './views/product'
 import qq from './views/qq'
 import zhifubao from './views/zhifubao'
 import cart from './views/cart'
+import MyHome from './views/MyHome.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +24,7 @@ export default new Router({
     {path:'/login/qq',component:qq},
     {path:'/login/zhifubao',component:zhifubao},
     {path:'/cart',component:cart},
+    {path:'/MyHome',component:MyHome},
   ],
   linkActiveClass:'mui-active'
 })
