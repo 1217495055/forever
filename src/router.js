@@ -7,6 +7,9 @@ import Classfy from './views/Classfy'
 import login from './views/login'
 import register from './views/register'
 import product from './views/product'
+import qq from './views/qq'
+import zhifubao from './views/zhifubao'
+import cart from './views/cart'
 Vue.use(Router)
 
 export default new Router({
@@ -16,6 +19,9 @@ export default new Router({
     {path:'/login',component:login},
     {path:'/product',component:product},
     {path:'/register',component:register},
+    {path:'/login/qq',component:qq},
+    {path:'/login/zhifubao',component:zhifubao},
+    {path:'/cart',component:cart},
   ],
   linkActiveClass:'mui-active'
 })

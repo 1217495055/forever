@@ -7,7 +7,7 @@
         <!-- 登录信息 -->
         <div class='info'>
             <!-- 1 用户名输入框 -->
-            <div><input :placeholder="unameholder" v-model='uname' type='text' maxlength="12"><i   v-show='uname?true:false' @click='reset1'>x</i></div>
+            <div><input :placeholder="unameholder" v-model='uname' type='text' maxlength="12"><i v-show='uname?true:false' @click='reset1'>x</i></div>
             <!-- 2密码输入框 -->
             <div><input :placeholder="upwdholder" v-model='upwd' type='text' v-if='check' maxlength="18"><input :placeholder="upwdholder" v-model='upwd' type='password' v-else maxlength="18"><i v-show='upwd?true:false' @click='reset2'>x</i><img :src='status' @click='chang' class='show_img'>
             </div>
@@ -16,13 +16,13 @@
             <!-- 登录  注册 -->
             <div class='logon_reg'>
                 <div><a href="javascript:;" v-text='pass1' @click='jump'>{{}}</a></div>
-                <div><a href="javascript:;">注册></a></div>
+                <div><router-link to="/register" @click.prevent='regis'>注册></router-link></div>
             </div>
             <!-- QQ 支付宝 -->
             <div class='qq'>
-                <div><span class='icon'></span>QQ</div>
+                <div @click='qq'><span class='icon'></span>QQ</div>
                 <div></div>
-                <div><span class='icon zfb'></span>支付宝</div>
+                <div @click='zhifubao'><span class='icon zfb'></span>支付宝</div>
             </div>
         </div>
     </div>
@@ -39,17 +39,17 @@
             <div><input :placeholder="valholder" v-model='val' type='text' maxlength="6"><i v-show='val?true:false' @click='reset4'>x</i><span class='val' @click='getval' v-text="msg"></span>
             </div>
             <!-- 3 登录按钮 -->
-            <a href='javascript:;' @click='login' v-text="text"></a>
+            <a href='javascript:;' @click='login' v-text="text" @keyup.13='login'></a>
             <!-- 登录  注册 -->
             <div class='logon_reg'>
                 <div><a href="javascript:;" v-text='pass' @click='jump'></a></div>
-                <div><a href="javascript:;" @click.prevent='regis'>注册></a></div>
+                <div><router-link to="/register" @click.prevent='regis'>注册></router-link></div>
             </div>
             <!-- QQ 支付宝 -->
             <div class='qq'>
-                <div><span class='icon'></span>QQ</div>
+                <div @click='qq'><span class='icon'></span>QQ</div>
                 <div></div>
-                <div><span class='icon zfb'></span>支付宝</div>
+                <div @click='zhifubao'><span class='icon zfb'></span>支付宝</div>
             </div>
         </div>
     </div>
@@ -82,6 +82,12 @@ export default {
         
     },
     methods:{
+        qq(){
+            this.$router.push('/login/qq')
+        },
+        zhifubao(){
+            this.$router.push('/login/zhifubao')
+        },
         getval(){
             if(!this.phone){this.$toast('手机号不能为空');return};
             this.code='';
@@ -106,7 +112,7 @@ export default {
         close(){
             this.$router.push('/');
         },
-        reset1(){
+        reset1(val){
             this.uname='';
         },
         reset2(){
@@ -123,61 +129,52 @@ export default {
             // 完成用户登录操作，1 获取用户输入用户名 2 获取用户输入密码 3 创建正则表达式验证用户名和密码 6——18为字母数字
             // 如果login为真，则验证用户名，密码
             if(this.flag){
+                // 4 用户名，密码正则 提示消息
                 this.uname = this.uname.replace(/(^\s*)|(\s*$)/g, "");
                 this.upwd = this.upwd.replace(/(^\s*)|(\s*$)/g, "");
                 if(!this.uname){this.$toast('用户名不能为空');return};
                 if(!this.upwd){this.$toast('密码不能为空');return};
                 if(this.uname.length<6){this.$toast('用户名至少六位');return};
-                if(this.upwd.length<6){this.$toast('至少六位密码');return};
-                // 用户名，密码正则
-                console.log(this.uname,this.upwd)
-                if(/^[0-9a-z]{6,12}$/i.test(this.uname)){
-                    if(/^[0-9a-z]{6,18}$/i.test(this.upwd)){
-                        // 4 用户验证失败 提示段消息 5 密码验证失败，提示段消息   6 发送ajax请求
-                        var obj = {uname:this.uname,upwd:this.upwd}
-                        this.axios.get('login',{params:obj}).then(res=>{
-                            // 7 获取服务器返回结果，  7.1 登录失败，提示   7.2 登录成功，跳转商品首页
-                            this.$toast('登录成功');
-                            setTimeout(function(){
-                                this.$router.go(-1);
-                            },400);  
-                        });
+                if(this.upwd.length<6){this.$toast('密码至少六位');return};
+                if((/^\d{6,12}$/.test(this.uname))||(/^[a-zA-Z]{6,12}$/.test(this.uname))){this.$toast('用户名必须包含字母和数字');return};
+                if((/^\d{6,18}$/.test(this.upwd))||(/^[a-zA-Z]{6,18}$/.test(this.upwd))){this.$toast('密码必须包含字母和数字');return};
+                // 发送ajax请求
+                var obj = {uname:this.uname,upwd:this.upwd}
+                this.axios.get('login',{params:obj}).then(res=>{
+                    // 7 获取服务器返回结果，  7.1 登录失败，提示   7.2 登录成功，跳转商品首页
+                    if(res.data.status==0){
+                        this.$toast('登录成功');
+                        setTimeout(function(){
+                            this.$router.push('/product');
+                        },400);
                     }else{
-                        this.$toast('密码格式不正确');
-                        return;
-                    }
-                }else{
-                    this.$toast('用户名格式不正确');
-                    return;
-                }   
+                        this.$toast('用户名或密码错误');
+                    } 
+                });  
             // 如果login为假，则执行手机号验证
             }else{
                 this.phone = this.phone.replace(/(^\s*)|(\s*$)/g, "");
                 this.val = this.val.replace(/(^\s*)|(\s*$)/ig, "");
                 if(!this.phone){this.$toast('手机号不能为空');return};
                 if(!this.val){this.$toast('请输入验证码');return};
-                if(this.phone.length!=11){this.$toast('请输入合法的手机号');return};
-                if(this.val.length!=6){this.$toast('验证码输入错误');return};
-                // 手机号，验证码正则
+                if(this.val!=this.code.toLowerCase()){this.$toast('验证码输入错误');return};
+                // 4 用户验证失败 提示段消息 5 密码验证失败，提示段消息   6 发送ajax请求
                 if(/^1[3-8]\d{9}$/.test(this.phone)){
-                    if(this.val==this.code.toLowerCase()){
-                        // 4 用户验证失败 提示段消息 5 密码验证失败，提示段消息   6 发送ajax请求
-                        var obj = {phone:this.phone}
-                        this.axios.get('phone',{params:obj}).then(res=>{
-                            // 7 获取服务器返回结果，  7.1 登录失败，提示   7.2 登录成功，跳转商品首页
+                    var obj = {phone:this.phone}
+                    this.axios.get('phone',{params:obj}).then(res=>{
+                        // 7 获取服务器返回结果，  7.1 登录失败，提示   7.2 登录成功，跳转商品首页
+                        if(res.data.status==0){
                             this.$toast('登录成功');
                             setTimeout(function(){
-                                this.$router.go(-1);
-                            },400);  
-                        });
-                    }else{
-                        this.$toast('验证码输入错误');
-                        return;
-                    }
+                                this.$router.push('/product');
+                            },400); 
+                        }else{
+                            this.$toast('该手机号未注册,请前往注册页面');
+                        } 
+                    });
                 }else{
-                    this.$toast('手机号输入错误');
-                    return;
-                }
+                    this.$toast('请输入合法的手机号');
+                } 
             }
         }
     },
@@ -287,7 +284,7 @@ export default {
 }
 .login .qq .icon{
     display: inline-block;
-    background: url('../img/qq.png');
+    background: url('../img/qq.png') no-repeat;
     width:1rem;
     height:1rem;
     margin-right:0.25rem;
@@ -295,9 +292,11 @@ export default {
     top:8px;
     left:2px;
 }
-
+.login .qq div:not(:nth-child(2)){
+    width:45%;
+}
 .login .qq .zfb{
-     background: url('../img/zfb.png');
+     background: url('../img/zfb.png') no-repeat;
      top:8px;
 }
 .login .val{

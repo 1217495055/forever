@@ -13,10 +13,11 @@
             <div class='info'>
                 {{item.price}}
             </div>
-            <mt-button>加入购物车</mt-button>
+            <mt-button @click='addCart' :data-lid='item.lid' :data-price='item.price' :data-lname='item.lname'>加入购物车</mt-button>
         </div>
         <!-- 加载更多 -->
         <mt-button type='primary' size='large' @click='loadMore'>加载更多</mt-button>
+        <mt-button  @click='jumpcart'>加入购物车</mt-button>
     </div>
 </template>
 
@@ -30,6 +31,22 @@ export default {
         }
     },
     methods:{
+        jumpcart(){
+            this.$router.push('/cart');
+        },
+        addCart(e){
+            var lid = e.target.dataset.lid;
+            var n = e.target.dataset.lname;
+            var p = e.target.dataset.price;
+            var obj = {lid:lid,lname:n,price:p};
+            this.axios.get('/addcart',{params:obj}).then(res=>{
+                if(res.data.code==-1){
+                    this.$toast('请先登录再购买商品')
+                }else{
+                    this.$toast('添加成功')
+                }
+            })
+        },
         loadMore(){
             // 获取商品分页的数据
             // 1 发送请求

@@ -20,9 +20,9 @@
             <a href='javascript:;' @click='register' v-text="text"></a>
             <!-- QQ 支付宝 -->
             <div class='qq'>
-                <div><span class='icon'></span>QQ</div>
+                <div @click='qq'><span class='icon'></span>QQ</div>
                 <div></div>
-                <div><span class='icon zfb'></span>支付宝</div>
+                <div @click='zhifubao'><span class='icon zfb'></span>支付宝</div>
             </div>
         </div>
     </div>
@@ -51,6 +51,12 @@ export default {
         } 
     },
     methods:{
+        qq(){
+            this.$router.push('/login/qq')
+        },
+        zhifubao(){
+            this.$router.push('/login/zhifubao')
+        },
         getval(){
             if(!this.phone){this.$toast('手机号不能为空');return};
             this.code='';
@@ -93,42 +99,29 @@ export default {
             if(!this.uname){this.$toast('用户名不能为空');return};
             if(!this.phone){this.$toast('手机号不能为空');return};
             if(!this.upwd){this.$toast('密码不能为空');return};
-            if(this.uname.length<6){this.$toast('用户名至少六位');return};
-            if(this.upwd.length<6){this.$toast('至少六位密码');return};
             if(!this.val){this.$toast('请输入验证码');return};
-            if(this.phone.length!=11){this.$toast('请输入合法的手机号');return};
-            if(this.val.length!=6){this.$toast('验证码输入错误');return};
-            if(/^[0-9a-z]{6,12}$/i.test(this.uname)){
-                if(/^1[3-8]\d{9}$/i.test(this.phone)){
-                    if(this.val==this.code.toLowerCase()){
-                        if(/^[0-9a-z]{6,18}$/i.test(this.upwd)){
-                            // 4 用户验证失败 提示段消息 5 密码验证失败，提示段消息   6 发送ajax请求
-                            var obj = {uname:this.uname,upwd:this.upwd}
-                            this.axios.get('login',{params:obj}).then(res=>{
-                                // 7 获取服务器返回结果，  7.1 登录失败，提示   7.2 登录成功，跳转商品首页
-                                this.$toast('登录成功');
-                                setTimeout(function(){
-                                    this.$router.go(-1);
-                                },400);  
-                            });
-                            }else{
-                                this.$toast('密码格式不正确');
-                                return;
-                            }
-                        }else{
-                            this.$toast('验证码输入错误');
-                            return;
-                        }
-                    }else{
-                        this.$toast('手机号输入错误');
-                        return;
-                    }
+            // 4 用户验证失败 提示段消息 5 密码验证失败，提示段消息 
+            if(this.uname.length<6){this.$toast('用户名至少六位');return};
+            if(this.upwd.length<6){this.$toast('密码至少六位');return};
+            if(!/^1[3-8]\d{9}$/.test(this.phone)){this.$toast('请输入合法的手机号');return};
+            if(this.val!=this.code.toLowerCase()){this.$toast('验证码输入错误');return};
+            if((/^\d{6,12}$/.test(this.uname))||(/^[a-zA-Z]{6,12}$/.test(this.uname))){this.$toast('用户名必须包含字母和数字');return};
+            if((/^\d{6,18}$/.test(this.upwd))||(/^[a-zA-Z]{6,18}$/.test(this.upwd))){this.$toast('密码必须包含字母和数字');return};
+            // 6 发送ajax请求
+            var obj = {uname:this.uname,upwd:this.upwd,phone:this.phone}
+            this.axios.get('register',{params:obj}).then(res=>{
+                // 7 获取服务器返回结果，  7.1 登录失败，提示   7.2 登录成功，跳转商品首页
+                if(res.data.status==0){
+                    this.$toast('注册成功');
+                    setTimeout(function(){
+                        this.$router.go(-1);
+                    },400);
                 }else{
-                    this.$toast('用户名格式不正确');
-                    return;
-                }   
+                    this.$toast('注册失败');
+                }  
+            }); 
         }
-    },
+    }
 }
 </script>
 
@@ -243,7 +236,9 @@ export default {
     top:8px;
     left:2px;
 }
-
+.login .qq div:not(:nth-child(2)){
+    width:45%;
+}
 .login .qq .zfb{
      background: url('../img/zfb.png');
      top:8px;
