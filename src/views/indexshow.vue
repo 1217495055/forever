@@ -1,6 +1,13 @@
 <template>
-    <div class='detail recom'>
-        <a href="javascript:;" v-for='(item,i) of list' :key='i'>
+    <div class='send_lover'>
+      <!-- 顶部灰色区域 -->
+      <div class='gray'></div>
+      <!-- 标题 -->
+      <div class='title'>
+        <p v-text='title'></p>
+      </div>
+      <div class='detail' v-for='(item,i) of list' :key='i'>
+        <a href="javascript:;">
           <!-- 左边img -->
           <div class='img'>
             <img :src='"http://127.0.0.1:3000"+item.img_url' alt="">
@@ -8,6 +15,8 @@
           <!-- 右边content -->
           <div class='img_content' v-if='!item.title'>
             <p v-text='item.product_name'></p>
+            <p v-text='item.descript'></p>
+            <p class='top_bot' v-text='item.hot_title'></p>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
               <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
@@ -15,8 +24,10 @@
           </div>
           <!-- 右边content -->
           <div class='img_content' v-else>
-            <p class='count' v-text='item.product_name'></p>
+            <p v-text='item.product_name'></p>
+            <p class='count' v-text='item.descript'></p>
             <span class='ret_count' v-text='item.title'></span>
+            <p class='top_bot' v-text='item.title'></p>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
               <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
@@ -24,16 +35,25 @@
           </div>
         </a>
       </div>
+      <!-- 查看更多 -->
+      <div class='more'>
+        <a href="javascript:;">查看更多</a>
+      </div>
+
+    </div>
 </template>
 
 
 <script>
 export default {
-  props:{
+    props:{
       list:{default:''},
+      title:{default:''},
   }
 }
 </script>
+
+
 
 <style>
 .send_lover{
@@ -177,4 +197,6 @@ export default {
     padding: 0 6px;
   }
 </style>
+
+
 
