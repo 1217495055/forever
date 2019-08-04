@@ -10,7 +10,8 @@
             <p v-text='item.product_name'></p>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
-              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
+              <!-- <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div> -->
+              <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
             </div>
           </div>
           <!-- 右边content -->
@@ -19,7 +20,8 @@
             <span class='ret_count' v-text='item.title'></span>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
-              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
+              <!-- <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div> -->
+              <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
             </div>
           </div>
         </a>
@@ -36,21 +38,10 @@ export default {
 </script>
 
 <style>
-.send_lover{
-     margin-top: 10px;
-   }
-   .send_lover .gray{
-    background-color: #ded6d6;
-    height:8px;
-   }
-   .send_lover .title{
-     height:50px;
-     text-align: center;
-     line-height: 50px;
-   }
-   .send_lover .title>p{
-     color:#333;
-   }
+
+  .detail .img_content  .shopcart .mui-icon-extra {
+    font-size: 28px;
+  }
    .send_lover .detail>a{
      margin: 4px 8px;
      height:192px;
@@ -161,7 +152,7 @@ export default {
      height:300px;
      display: flex;
      flex-direction: column;
-     margin-left: 4px;
+     margin-left: 6px;
    }
    .detail.recom>a:nth-child(2n){
      margin-right:4px;

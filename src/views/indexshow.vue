@@ -19,7 +19,8 @@
             <p class='top_bot' v-text='item.hot_title'></p>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
-              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
+              <!-- <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div> -->
+              <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
             </div>
           </div>
           <!-- 右边content -->
@@ -30,7 +31,8 @@
             <p class='top_bot' v-text='item.title'></p>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
-              <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div>
+              <!-- <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div> -->
+              <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
             </div>
           </div>
         </a>
@@ -56,6 +58,9 @@ export default {
 
 
 <style>
+.detail .img_content  .shopcart .mui-icon-extra {
+    font-size: 28px;
+  }
 .send_lover{
      margin-top: 10px;
    }

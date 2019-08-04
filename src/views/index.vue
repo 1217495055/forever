@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='index'>
     <my-header></my-header>
 		<!-- 轮播图区域 -->
 		<mt-swipe :auto='4000'>
@@ -10,10 +10,10 @@
 		</mt-swipe>
     <!-- 四个bar -->
     <div class='four-bar'>
-      <a href="javascript:;"><i>√</i><span>认证龙头企业</span></a>
-      <a href="javascript:;"><i>√</i><span>13年品牌</span></a>
-      <a href="javascript:;"><i>√</i><span>3小时送花</span></a>
-      <a href="javascript:;"><i>√</i><span>最近2434条好评</span></a>
+      <a href="javascript:;"><i class='mui-icon mui-icon-checkmarkempty'></i><span>认证龙头企业</span></a>
+      <a href="javascript:;"><i class='mui-icon mui-icon-checkmarkempty'></i><span>13年品牌</span></a>
+      <a href="javascript:;"><i class='mui-icon mui-icon-checkmarkempty'></i><span>3小时送花</span></a>
+      <a href="javascript:;"><i class='mui-icon mui-icon-checkmarkempty'></i><span>最近2434条好评</span></a>
     </div>
     <!-- 5个logo -->
     <div class='five_logo'>
@@ -77,64 +77,16 @@
     <my-index :list='list2' :title='title2'></my-index>
 
     <!-- 永生花推荐 -->
-    <div class='send_lover'>
-      <!-- 顶部灰色区域 -->
-      <div class='gray'></div>
-      <!-- 标题 -->
-      <div class='title'>
-        <p>永生花推荐</p>
-      </div>
-      <my-showlist :list='list3'></my-showlist>
-      <!-- 查看更多 -->
-      <div class='more'>
-        <a href="javascript:;">查看更多</a>
-      </div>
-    </div>
+    <my-recommend :list='list3' :title='title3'></my-recommend>
 
     <!-- 蛋糕推荐 -->
-    <div class='send_lover'>
-      <!-- 顶部灰色区域 -->
-      <div class='gray'></div>
-      <!-- 标题 -->
-      <div class='title'>
-        <p>蛋糕推荐</p>
-      </div>
-      <my-showlist :list='list4'></my-showlist>
-      <!-- 查看更多 -->
-      <div class='more'>
-        <a href="javascript:;">查看更多</a>
-      </div>
-    </div>
+    <my-recommend :list='list4' :title='title4'></my-recommend>
 
     <!-- 礼品推荐 -->
-    <div class='send_lover'>
-      <!-- 顶部灰色区域 -->
-      <div class='gray'></div>
-      <!-- 标题 -->
-      <div class='title'>
-        <p>礼品推荐</p>
-      </div>
-      <my-showlist :list='list5'></my-showlist>
-      <!-- 查看更多 -->
-      <div class='more'>
-        <a href="javascript:;">查看更多</a>
-      </div>
-    </div>
+    <my-recommend :list='list5' :title='title5'></my-recommend>
 
     <!-- 巧克力推荐 -->
-    <div class='send_lover'>
-      <!-- 顶部灰色区域 -->
-      <div class='gray'></div>
-      <!-- 标题 -->
-      <div class='title'>
-        <p>巧克力推荐</p>
-      </div>
-      <my-showlist :list='list6'></my-showlist>
-      <!-- 查看更多 -->
-      <div class='more'>
-        <a href="javascript:;">查看更多</a>
-      </div>
-    </div>
+    <my-recommend :list='list6' :title='title6'></my-recommend>
 
     <!-- 底部 -->
     <div class='img_buttom'>
@@ -173,14 +125,14 @@
 <script>
 import header from './header'
 import footer from './footer'
-import showlist from './showlist'
 import indexshow from './indexshow'
+import recommend from './recommend'
 export default {
   components: {
-        "my-showlist":showlist,
         "my-header":header,
         "my-footer":footer,
         "my-index":indexshow,
+        "my-recommend":recommend,
     },
     data(){
         return{
@@ -195,6 +147,10 @@ export default {
             list6:[],
             title1:'送恋人/爱情鲜花',
             title2:'送长辈鲜花',
+            title3:'永生花推荐',
+            title4:'蛋糕推荐',
+            title5:'礼品推荐',
+            title6:'巧克力推荐',
         }
     },
     created(){
@@ -244,50 +200,50 @@ export default {
 <style>
 @import url('../../public/css/reset.css');
 [v-cloak]{display:none}
-.mint-swipe{
+.index .mint-swipe{
     height:240px !important;
 }
-.mint-swipe-items-wrap {
+.index .mint-swipe-items-wrap {
     margin-top: 50px;
     height:79% !important;
 }
-.mint-swipe-item img{
+.index .mint-swipe-item img{
     width:100%;
     height:190px;
 }
-.mui-grid-view.mui-grid-9{
+.index .mui-grid-view.mui-grid-9{
 	background-color: #fff;
 	border:none;
 }
-.mui-grid-view.mui-grid-9 img{
+.index .mui-grid-view.mui-grid-9 img{
   width:60px;height:60px;
   border-radius: 50%;
 }
-.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+.index .mui-grid-view.mui-grid-9 .mui-table-view-cell{
 	border: 0;
 }
-.mui-media-body{
+.index .mui-media-body{
 	font-size: 12px;
 }
-.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+.index .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
   font-size: 12px;
   text-overflow:clip;
 }
-p{
+.index p{
   margin:0;padding:0;
 }
-.laba{
+.index .laba{
   width:100%;
   height:20px;
   margin: 6px 0;
 }
-.laba img{
+.index .laba img{
   width:20px;
   height:20px;
   float: left;
   margin:0 6px 0 20px;
 }
-.laba span{
+.index .laba span{
   display: inline-block;
   width:80%;
   height:100%;
@@ -295,7 +251,7 @@ p{
   color:#cc030b;
   overflow: hidden;
 }
-.four-bar{
+.index .four-bar{
   height:16px;
   margin: 2px 5px;
   text-align: center;
@@ -303,7 +259,7 @@ p{
   justify-content: space-around;
   box-sizing: border-box;
 }
-.four-bar a i{
+.index .four-bar a i{
   width:12px;
   height:12px;
   display: inline-block;
@@ -475,146 +431,6 @@ p{
      width:60%;
      height:75%;
    }
-   /* .send_lover{
-     margin-top: 10px;
-   }
-   .send_lover .gray{
-    background-color: #ded6d6;
-    height:8px;
-   }
-   .send_lover .title{
-     height:50px;
-     text-align: center;
-     line-height: 50px;
-   }
-   .send_lover .title>p{
-     color:#333;
-   }
-   .send_lover .detail>a{
-     margin: 4px 8px;
-     height:192px;
-     box-shadow:0px 0px 4px #978e8e;
-     border-radius: 3px;
-     display: flex;
-   }
-   .send_lover .detail{
-     margin-bottom:16px;
-   }
-   .send_lover .detail .img{
-     width:50%;
-   }
-   .send_lover .detail .img img{
-     width:100%;
-     height: 100%;
-   }
-   .send_lover .detail .img_content{
-     padding:4%;
-     width: 50%;
-     color:#666;
-   }
-   .send_lover .detail .img_content p:first-child{
-     font-size: 14px;
-     margin: 0.2rem 0;
-   }
-   .send_lover .detail .img_content p:nth-child(2){
-     font-size: 2px;
-     margin-bottom: 0.4rem;
-     max-height: 1.5rem;
-     overflow: hidden;
-   }
-   .send_lover .detail .img_content .top_bot{
-     font-size: 12px;
-     margin: 0.3rem 0;
-     padding:5px 0;
-     border-top:1px solid #cccbcb;
-     border-bottom:1px solid #cccbcb;
-     color:#333;
-    margin-bottom: 0.4rem;
-   }  
-   .detail .img_content .price{
-     width:70%;
-     display: flex;
-     flex-direction: column;
-     font-size: 12px;
-   }
-   .detail .img_content .price>span:first-child{
-      font-size: 0.7rem;
-      color: #FF734C;
-      font-weight: 500;
-   }
-    .detail .img_content .price>span:nth-child(2){
-      font-size: 0.5rem;
-      color:#666;
-   }
-   .detail .img_content .price i{
-      text-decoration:line-through;
-      color:#666;
-      font-size: 12px;
-      margin-left: 0.4rem;
-   }
-   .detail .img_content .shopcart{
-     width:30%;
-   }
-   .detail .img_content .pri_shop{
-     display: flex;
-   }
-   .detail .img_content .shopcart img{
-     width:56%;
-     height:56%;
-     margin-top:6px; 
-   }
-   .detail .img_content .count{
-     overflow: hidden;
-     text-overflow: ellipsis;
-     white-space: nowrap;
-   }
-   .detail .img_content .ret_count{
-     border:1px solid orangered;
-     color:orangered;
-     font-size: 12px;
-     padding:2px;
-     border-radius: 6px;
-   }
-   .send_lover .more{
-     height:36px;  
-     text-align: center;
-   }
-   .send_lover .more a{
-     margin-top:6px; 
-     display: inline-block;
-     border:1px  solid #796565;
-     border-radius: 6px;
-     width: 20%;
-     height:26px;
-     text-align: center;
-     line-height: 26px;
-      /* align-items: center; */
-     /* font-size: 12px; */
-   /* } */
-   /* .detail.recom{
-     display: flex;
-    flex-wrap: wrap;
-   }
-   .detail.recom>a{
-     width:47%;
-     height:300px;
-     display: flex;
-     flex-direction: column;
-     margin-left: 4px;
-   }
-   .detail.recom>a:nth-child(2n){
-     margin-right:4px;
-      margin-left: 0px;
-      width:48%;
-   }
-   .detail.recom>a .img{
-     width:100%;
-     height:190px;
-   }
-  .detail.recom .img_content{
-    width:100%;
-    padding: 0 6px;
-  }  */
   .img_buttom{
     margin-top: 20px;
   }

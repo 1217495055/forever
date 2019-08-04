@@ -1,7 +1,7 @@
 <template>
     <div class='login' v-if='flag'>
         <!-- X -->
-        <div class='close' @click='close'>X</div>
+        <div class='close' @click='close'><span class='mui-icon mui-icon-closeempty'></span></div>
         <!-- logo -->
         <div class='logo'><p>Hua.com花礼网</p></div>
         <!-- 登录信息 -->
@@ -28,7 +28,7 @@
     </div>
     <div class='login' v-else>
         <!-- X -->
-        <div class='close' @click='close'>X</div>
+        <div class='close' @click='close'><span class='mui-icon mui-icon-closeempty'></span></div>
         <!-- logo -->
         <div class='logo'><p>Hua.com花礼网</p></div>
         <!-- 登录信息 -->
@@ -194,6 +194,9 @@ export default {
     font-size: 26px;
     margin-left: 4%;
     margin-top: 2%;
+}
+.login .close>.mui-icon {
+    font-size: 42px;
 }
 .login .logo{
     text-align: center;

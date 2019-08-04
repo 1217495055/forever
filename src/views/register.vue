@@ -1,7 +1,7 @@
 <template>
     <div class='login'>
         <!-- X -->
-        <div class='close' @click='close'>&lt;</div>
+        <div class='close' @click='close'><span class='mui-icon mui-icon-arrowleft'></span></div>
         <!-- logo -->
         <div class='logo'><p>Hua.com花礼网</p></div>
         <!-- 登录信息 -->
@@ -138,6 +138,9 @@ export default {
     font-size: 26px;
     margin-left: 4%;
     margin-top: 2%;
+}
+.login .close .mui-icon.mui-icon-arrowleft{
+    font-size: 34px;
 }
 .login .logo{
     text-align: center;
