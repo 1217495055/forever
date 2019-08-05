@@ -13,6 +13,7 @@ import cart from './views/cart'
 import detail from './views/detail'
 import detailbuttom from './views/detail_buttom'
 import why from './views/whyselect'
+import MyHome from './views/MyHome'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +29,7 @@ export default new Router({
     {path:'/detail/:id',component:detail,props:true},
     {path:'/detailbuttom',component:detailbuttom,props:true},
     {path:'/why',component:why},
+    {path:'/MyHome',component:MyHome},
   ],
   linkActiveClass:'mui-active'
 })
