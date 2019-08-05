@@ -10,13 +10,9 @@ import product from './views/product'
 import qq from './views/qq'
 import zhifubao from './views/zhifubao'
 import cart from './views/cart'
-<<<<<<< HEAD
 import detail from './views/detail'
 import detailbuttom from './views/detail_buttom'
-=======
-import MyHome from './views/MyHome.vue'
-
->>>>>>> 21a22ada9b43fe6626b4911ff8c00d5d18de7385
+import why from './views/whyselect'
 Vue.use(Router)
 
 export default new Router({
@@ -28,14 +24,10 @@ export default new Router({
     {path:'/register',component:register},
     {path:'/login/qq',component:qq},
     {path:'/login/zhifubao',component:zhifubao},
-<<<<<<< HEAD
     {path:'/cart',component:cart,props:true},
-    {path:'/detail',component:detail,props:true},
+    {path:'/detail/:id',component:detail,props:true},
     {path:'/detailbuttom',component:detailbuttom,props:true},
-=======
-    {path:'/cart',component:cart},
-    {path:'/MyHome',component:MyHome},
->>>>>>> 21a22ada9b43fe6626b4911ff8c00d5d18de7385
+    {path:'/why',component:why},
   ],
   linkActiveClass:'mui-active'
 })

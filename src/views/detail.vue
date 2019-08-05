@@ -10,7 +10,7 @@
         <!-- 轮播图区域 -->
 		<mt-swipe :auto='90000000'>
             <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
-            <mt-swipe-item v-for="(item,i) of lunbotuList" :key="i">
+            <mt-swipe-item v-for="(item,i) of detailinfo" :key="i">
                 <img :src='require("../"+item.img_url)' alt="">
             </mt-swipe-item>
 	    </mt-swipe>
@@ -70,7 +70,44 @@
             <div>订单评价</div>
             <div>最近已有8500条评价<i class='mui-icon mui-icon-arrowright'></i></div>
         </div>
-
+        <!-- 用户评论 -->
+        <my-usercom></my-usercom>
+        <div class='empty'></div>
+        <!-- 选择我们 -->
+        <my-select></my-select>
+        <div class='empty'></div>
+        <!-- 图文详情 -->
+        <div class='detail_img'>
+            <div class='img_title'>图文详情</div>
+            <div class='img_title1'>
+                <img src="../img/1.jpg" alt="">
+                <div class='title_info'>
+                    <p>一往情深</p>
+                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                </div>
+                <img src="../img/1.jpg" alt="">
+                <div class='title_info'>
+                    <p>一往情深</p>
+                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                </div>
+                <img src="../img/1.jpg" alt="">
+                <div class='title_info'>
+                    <p>一往情深</p>
+                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                </div>
+                <img src="../img/1.jpg" alt="">
+                <div class='title_info'>
+                    <p>一往情深</p>
+                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                </div>
+                <img src="../img/lika.png" alt="" class='last_img'>
+                <div class='title_info'>
+                    <p>贴心服务 下单即享</p>
+                    <p>免费增送精美礼卡·您可填写留言</p>
+                </div>
+            </div>
+        </div>
+        <my-whyselect></my-whyselect>
         <my-detailfooter></my-detailfooter>
     </div>
     
@@ -78,24 +115,32 @@
 
 <script>
 import detailbuttom from './detail_buttom'
+import usercom from './user_com'
+import select from './select'
+import whyselect from './whyselect'
 export default {
     components: {
         "my-detailfooter":detailbuttom,
+        "my-usercom":usercom,
+        "my-select":select,
+        "my-whyselect":whyselect,
     },
+    props:['id'],
     data(){
         return{
-            lunbotuList:[],
+            detailinfo:[],
         }
     },
     created(){
-        this.getLunbotu();
+        this.getinfo();
     },
     methods:{
-        getLunbotu(){
+        getinfo(){
             // 获取轮播图数据
-            this.axios.get('lunbotu').then(result=>{
+            this.axios.get('getinfo',{param:{id:this.id}}).then(result=>{
                 if(result.data.status==0){
-                    this.lunbotuList = result.data.message;
+                    this.detailinfo = result.data.message;
+                    console.log(this.detailinfo)
                 }else{
                     // 失败
                     this.$toast({message :'加载轮播图失败'});
@@ -331,6 +376,35 @@ export default {
 }
 .detail .pingjia .mui-icon{
     font-size: 14px;
+}
+.detail .detail_img{
+    width:100%;
+    height:2280px;
+}
+.detail .detail_img .img_title{
+    width:100%;
+    padding:0.5rem 16px;
+    font-size: 14px;
+}
+.detail .detail_img .img_title1{
+    width:100%;
+    height:408px;
+}
+.detail .detail_img .img_title1 img{
+    width:100%;
+    height:408px;
+}
+.detail .detail_img .img_title1 .title_info{
+    width:100%;
+    text-align: center;
+    margin-bottom: 0.6rem;
+}
+.detail .detail_img .img_title1 .title_info p{
+    margin-top:0.3rem;
+    font-size: 0.6rem;
+}
+.detail .detail_img .img_title1 .last_img{
+    height:215px;
 }
 </style>
 

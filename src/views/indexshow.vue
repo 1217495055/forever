@@ -7,7 +7,7 @@
         <p v-text='title'></p>
       </div>
       <div class='detail' v-for='(item,i) of list' :key='i'>
-        <a href="javascript:;">
+        <router-link :to="'/detail/'+item.product_id">
           <!-- 左边img -->
           <div class='img'>
             <img :src='"http://127.0.0.1:3000"+item.img_url' alt="">
@@ -35,7 +35,7 @@
               <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
             </div>
           </div>
-        </a>
+        </router-link>
       </div>
       <!-- 查看更多 -->
       <div class='more'>

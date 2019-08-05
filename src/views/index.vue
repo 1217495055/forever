@@ -93,30 +93,8 @@
       <img src="../img/6.png" alt="">
     </div>
     <!-- 选择我们 -->
-    <div class='foot_select'>
-      <div class='select'>为什么选择我们</div>
-      <!-- 六宫格 -->
-      <ul class="mui-table-view mui-grid-view mui-grid-9">
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><router-link to="/home/newlist">
-          <img src="../img/m_details_brand_01.png" alt="">
-          <div class="mui-media-body">获评龙头企业</div></router-link></li>
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-          <img src="../img/m_details_brand_02.png" alt="">
-          <div class="mui-media-body">1~3小时送花上门</div></a></li>
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-          <img src="../img/m_details_brand_03.png" alt="">
-          <div class="mui-media-body">冠军花艺师团队</div></a></li>
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-          <img src="../img/m_details_brand_04.png" alt="">
-          <div class="mui-media-body">严选花材</div></a></li>
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-          <img src="../img/m_details_brand_05.png" alt="">
-          <div class="mui-media-body">12道品控标准</div></a></li>
-        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-          <img src="../img/m_details_brand_06.png" alt="">
-          <div class="mui-media-body">500万用户好评</div></a></li>
-      </ul>
-    </div>
+    <my-select></my-select>
+    <!-- 底部 -->
     <my-footer></my-footer>
   </div>
 </template>
@@ -127,12 +105,14 @@ import header from './header'
 import footer from './footer'
 import indexshow from './indexshow'
 import recommend from './recommend'
+import select from './select'
 export default {
   components: {
         "my-header":header,
         "my-footer":footer,
         "my-index":indexshow,
         "my-recommend":recommend,
+        "my-select":select,
     },
     data(){
         return{
@@ -438,19 +418,5 @@ export default {
     width:100%;
     height:130px;
   }
-.foot_select{
-  margin-bottom: 60px;
-  text-overflow: clip;
-}
-.foot_select li{
-  width:33%;
-}
-.foot_select .select{
-    font-size: 0.6rem;;
-    padding: 20px 0 10px 0;
-    text-align: center;
-    font-weight: normal;
-    color:#333;
-}
 </style>
 
