@@ -3,7 +3,7 @@
     <div class='my_header'>
         <a href="javascript:;"><span class="iconfont icon-sousuo1"></span></a>
         <a href="javascript:;">Hua.com花礼网</a>
-        <a href="javascript:;"><span class="iconfont icon-lianxi"></span></a>
+        <router-link to="/reply"><span class="iconfont icon-lianxi"></span></router-link>
     </div>
 </template>
 

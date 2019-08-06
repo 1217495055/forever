@@ -98,6 +98,7 @@ export default {
     box-sizing: border-box;
     padding:8px 0 1rem 0;
     text-align: center;
+    line-height: 54px;
 }
 .user_com .user_com_more>span{
     border:1px solid #000;

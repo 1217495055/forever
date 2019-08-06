@@ -48,7 +48,9 @@ export default {
 
 
 <style scoped>
-
+/* .app-container{
+	background-color: #fff;
+} */
 </style>
 
 

@@ -2,18 +2,23 @@
     <div class='detail recom'>
         <a href="javascript:;" v-for='(item,i) of list' :key='i'>
           <!-- 左边img -->
-          <div class='img'>
+          <router-link :to="'/detail/'+item.product_id" class='img'>
             <img :src='"http://127.0.0.1:3000"+item.img_url' alt="">
-          </div>
+          </router-link>
           <!-- 右边content -->
-          <div class='img_content' v-if='!item.title'>
+          <router-link :to="'/detail/'+item.product_id" class='img_content' v-if='!item.title'>
             <p v-text='item.product_name'></p>
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
               <!-- <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div> -->
-              <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
+              <div class='shopcart' @click.stop='flag=!flag'>
+                <span class='mui-icon-extra mui-icon-extra-cart'></span>
+                <transition @before-enter='beforeEnter' @enter='enter' @after-enter='afterEnter'>
+                  <div class='ball' v-show='flag'></div>
+                </transition>
+              </div>
             </div>
-          </div>
+          </router-link>
           <!-- 右边content -->
           <div class='img_content' v-else>
             <p class='count' v-text='item.product_name'></p>
@@ -21,7 +26,12 @@
             <div class='pri_shop'>
               <div class='price'><span v-cloak>¥{{item.price}}<i v-cloak>¥{{item.price_after}}</i></span><span v-cloak>已销售{{item.click}}件</span></div>
               <!-- <div class='shopcart'><img src="../img/gouwuche.png" alt=""></div> -->
-              <div class='shopcart'><span class='mui-icon-extra mui-icon-extra-cart'></span></div>
+              <div class='shopcart' @click.stop='flag=!flag'>
+                <span class='mui-icon-extra mui-icon-extra-cart'></span>
+                <transition @before-enter='beforeEnter' @enter='enter' @after-enter='afterEnter'>
+                  <div class='ball' v-show='flag'></div>
+                </transition>
+              </div>
             </div>
           </div>
         </a>
@@ -33,7 +43,24 @@
 export default {
   props:{
       list:{default:''},
-  }
+      flag:false,
+  },
+  methods:{
+		// 注：动画钩子函数的第一个参数，el表示要执行动画的DOM对象
+		beforeEnter(el){
+			// 设置小球开始动画之前的起始位置
+			el.style.transform='translate(0,0)';
+		},
+		enter(el,done){
+			el.offsetWidth
+			el.style.transform='translate(150px,450px)';
+			el.style.transition='all 1s ease';
+			done();
+		},
+		afterEnter(el){
+			this.flag = !this.flag;
+		}
+	}
 }
 </script>
 
@@ -140,7 +167,6 @@ export default {
      height:26px;
      text-align: center;
      line-height: 26px;
-      /* align-items: center; */
      font-size: 12px;
    }
    .detail.recom{
@@ -166,6 +192,12 @@ export default {
   .detail.recom .img_content{
     width:100%;
     padding: 0 6px;
+  }
+.send_lover .detail .ball{
+  width:15px;
+  height:15px;
+  border-radius: 50%;
+  background-color: #f00;
   }
 </style>
 

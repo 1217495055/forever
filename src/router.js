@@ -13,6 +13,8 @@ import cart from './views/cart'
 import detail from './views/detail'
 import detailbuttom from './views/detail_buttom'
 import why from './views/whyselect'
+import reply from './views/auto_reply'
+import province from './views/province'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +30,8 @@ export default new Router({
     {path:'/detail/:id',component:detail,props:true},
     {path:'/detailbuttom',component:detailbuttom,props:true},
     {path:'/why',component:why},
+    {path:'/reply',component:reply},
+    {path:'/province',component:province},
   ],
   linkActiveClass:'mui-active'
 })

@@ -92,10 +92,10 @@ export default {
         register(){
             // 完成用户登录操作，1 获取用户输入用户名 2 获取用户输入密码 3 创建正则表达式验证用户名和密码 6——18为字母数字
             // 如果login为真，则验证用户名，密码
-            this.uname = this.uname.replace(/(^\s*)|(\s*$)/g, "");
-            this.upwd = this.upwd.replace(/(^\s*)|(\s*$)/g, "");
-            this.phone = this.phone.replace(/(^\s*)|(\s*$)/g, "");
-            this.val = this.val.replace(/(^\s*)|(\s*$)/g, "");
+            this.uname = this.uname.trim();
+            this.upwd = this.upwd.trim();
+            this.phone = this.phone.trim();
+            this.val = this.val.trim();
             if(!this.uname){this.$toast('用户名不能为空');return};
             if(!this.phone){this.$toast('手机号不能为空');return};
             if(!this.upwd){this.$toast('密码不能为空');return};

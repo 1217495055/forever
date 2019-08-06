@@ -130,8 +130,8 @@ export default {
             // 如果login为真，则验证用户名，密码
             if(this.flag){
                 // 4 用户名，密码正则 提示消息
-                this.uname = this.uname.replace(/(^\s*)|(\s*$)/g, "");
-                this.upwd = this.upwd.replace(/(^\s*)|(\s*$)/g, "");
+                this.uname = this.uname.trim();
+                this.upwd = this.upwd.trim();
                 if(!this.uname){this.$toast('用户名不能为空');return};
                 if(!this.upwd){this.$toast('密码不能为空');return};
                 if(this.uname.length<6){this.$toast('用户名至少六位');return};
@@ -153,8 +153,8 @@ export default {
                 });  
             // 如果login为假，则执行手机号验证
             }else{
-                this.phone = this.phone.replace(/(^\s*)|(\s*$)/g, "");
-                this.val = this.val.replace(/(^\s*)|(\s*$)/ig, "");
+                this.phone = this.phone.trim();
+                this.val = this.val.trim();
                 if(!this.phone){this.$toast('手机号不能为空');return};
                 if(!this.val){this.$toast('请输入验证码');return};
                 if(this.val!=this.code.toLowerCase()){this.$toast('验证码输入错误');return};

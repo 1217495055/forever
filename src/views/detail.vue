@@ -2,31 +2,40 @@
     <div class='detail'>
         <!-- 头部 -->
         <div class='detail_header'>
-            <a href="javascript:;"><span class='mui-icon mui-icon-arrowleft'></span></a>
+            <a href="javascript:;" @click='history'><span class='mui-icon mui-icon-arrowleft'></span></a>
             <a href="javascript:;">Hua.com花礼网</a>
             <a href="javascript:;"><span class='mui-icon mui-icon-bars'></span></a>
         </div>
         <!-- 图片展示 -->
         <!-- 轮播图区域 -->
-		<mt-swipe :auto='90000000'>
+		<mt-swipe :auto='90000'>
             <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
-            <mt-swipe-item v-for="(item,i) of detailinfo" :key="i">
-                <img :src='require("../"+item.img_url)' alt="">
+            <mt-swipe-item>
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url1' alt="">
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url2' alt="">
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url3' alt="">
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url4' alt="">
             </mt-swipe-item>
 	    </mt-swipe>
         <!-- 详细信息 -->
         <div class='detail_info'>
             <div class='info1'>
-                <div><p>一往情深-精品玫瑰礼盒:19枝红玫瑰，勿忘我0.1扎<span>经典爆款，年销售冠军！</span></p></div>
+                <div><p v-cloak>{{detailinfo[0].product_name+'-'+detailinfo[0].descript}}<span v-text='detailinfo[0].hot_title'></span></p></div>
                 <div><a href="javascript:;" class='iconfont  icon-shoucang'></a></div>
             </div>
             <div class='info2'>
                 <div>
-                    <span class='price'>¥535</span>
-                    <span class='price_parent'>¥664</span>
+                    <span class='price' v-cloak>¥{{detailinfo[0].price}}</span>
+                    <span class='price_parent' v-cloak>¥{{detailinfo[0].price_parent}}</span>
                     <span class='zhe'>8折</span>
                 </div>
-                <div><span>已售22.3万件</span></div>
+                <div><span v-cloak>已售 {{detailinfo[0].click}} 件</span></div>
             </div>
             <div class='info3'>
                 <div>8.5~8.8配送:¥535</div>
@@ -44,11 +53,11 @@
         <div class='pro_info'>
             <div>
                 <div>花语</div>
-                <div>再多一点点距离，我就能靠近你。清晰甜美的空气里，爱你到不能呼吸。</div>
+                <div v-text='detailinfo[0].pic_desc'></div>
             </div>
             <div>
                 <div>材料</div>
-                <div>再多一点点距离，我就能靠近你。清晰甜美的空气里，爱你到不能呼吸。</div>
+                <div v-text='detailinfo[0].descript'></div>
             </div>
             <div>
                 <div>配送</div>
@@ -58,6 +67,16 @@
                 <div>附送</div>
                 <div>下单填写留言，即免费赠送精美贺卡！</div>
             </div>
+        </div>
+        <div class='empty'></div>
+        <!-- 配送至 -->
+        <div class='media'>
+            <div>配送至</div>
+            <div class='mui-icon mui-icon-location'></div>
+            <div class='se_sity'>
+                <p class='c_ear'>请选择配送地区</p>
+            </div>
+            <div class='mui-icon mui-icon-more'></div>
         </div>
         <div class='empty'></div>
         <!-- 价格趋势图 -->
@@ -80,25 +99,24 @@
         <div class='detail_img'>
             <div class='img_title'>图文详情</div>
             <div class='img_title1'>
-                <img src="../img/1.jpg" alt="">
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url1' alt="">
                 <div class='title_info'>
-                    <p>一往情深</p>
-                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                    <p v-text='detailinfo[0].product_name'></p>
+                    <p v-text='detailinfo[0].pic_desc'></p>
                 </div>
-                <img src="../img/1.jpg" alt="">
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url2' alt="">
                 <div class='title_info'>
-                    <p>一往情深</p>
-                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                    <p v-text='detailinfo[0].product_name'></p>
+                    <p v-text='detailinfo[0].descript'></p>
                 </div>
-                <img src="../img/1.jpg" alt="">
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url3' alt="">
                 <div class='title_info'>
-                    <p>一往情深</p>
-                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                    <p></p>
                 </div>
-                <img src="../img/1.jpg" alt="">
+                <img :src='"http://127.0.0.1:3000"+detailinfo[0].pic_url4' alt="">
                 <div class='title_info'>
-                    <p>一往情深</p>
-                    <p>陪了你情窦初开，还想陪你两鬓斑白！</p>
+                    <p></p>
+                    <!-- <p>陪了你情窦初开，还想陪你两鬓斑白！</p> -->
                 </div>
                 <img src="../img/lika.png" alt="" class='last_img'>
                 <div class='title_info'>
@@ -132,18 +150,35 @@ export default {
         }
     },
     created(){
-        this.getinfo();
+    this.getinfo();
     },
     methods:{
+        history(){
+            this.$router.go(-1);
+        },
+        // getinfo(){
+        //     // 获取详情页数据
+        //     var id1=this.id;
+        //     this.axios.get('getinfo',{params:{id:id1}}).then(result=>{
+        //         if(result.data.status==0){
+        //             this.detailinfo = result.data.message;
+        //             console.log(this.detailinfo[0].pic_url1)
+        //         }else{
+        //             // 失败
+        //             this.$toast({message :'加载失败'});
+        //         }
+        //     })
+        // }
         getinfo(){
-            // 获取轮播图数据
-            this.axios.get('getinfo',{param:{id:this.id}}).then(result=>{
+            // 获取详情页数据
+            var data = {id:this.id}
+            this.axios.post('getinfo',data).then(result=>{
                 if(result.data.status==0){
                     this.detailinfo = result.data.message;
-                    console.log(this.detailinfo)
+                    console.log(this.detailinfo[0].pic_url1)
                 }else{
                     // 失败
-                    this.$toast({message :'加载轮播图失败'});
+                    this.$toast({message :'加载失败'});
                 }
             })
         }
@@ -157,10 +192,34 @@ export default {
     width:100%;
     box-sizing: border-box;
 }
+.detail .media{
+    display: flex;
+    background-color: #fff;
+    padding:14px 16px;
+    width:100%;
+    box-sizing: border-box;
+    color:#232628;
+
+}
+.detail .media div{
+    width:10%;
+}
+.detail .media div:first-child{
+    width:12%;
+}
+.detail .media .se_sity{
+    width:68%;
+}
+.detail .media .se_sity .c_ear{
+    /* font-size:  */
+}
 .detail .detail_header{
     height:1.8rem;
     display: flex;
     justify-content: space-around;
+}
+.detail .media div.mui-icon{
+    font-size: 16px;
 }
 .detail .detail_header>a{
     width:100%;
@@ -379,7 +438,7 @@ export default {
 }
 .detail .detail_img{
     width:100%;
-    height:2280px;
+    height:2180px;
 }
 .detail .detail_img .img_title{
     width:100%;
@@ -401,7 +460,9 @@ export default {
 }
 .detail .detail_img .img_title1 .title_info p{
     margin-top:0.3rem;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
+    padding:0 1rem;
+    color:#666;
 }
 .detail .detail_img .img_title1 .last_img{
     height:215px;

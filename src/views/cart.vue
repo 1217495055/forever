@@ -17,6 +17,8 @@
         </div>
         <!-- 按钮，删除选中商品 -->
         <div>
+            购物车商品数量
+            <span>{{$store1.getters.getCartCount}}</span>
             <mt-button @click='delMitem'>删除选中商品</mt-button>
             小计: <span></span>
         </div>
@@ -42,6 +44,7 @@ export default {
             }
             
         },
+
         // 删除多个购物车中指定的商品
         delMitem(){
             // 1 创建变量保存多个购物车中id值
@@ -51,6 +54,11 @@ export default {
                 if(item.cb){    //当前商品被选中
                     str+=item.id+','    //将id
                 }
+            };
+            // 判断用户是否选中了商品
+            if(str.length==0){
+                this.$$messagebox('请选择要删除的商品');
+                return;
             }
             // 3截取字符串中最后，
             str = str.substring(0,str,length-1);
@@ -103,9 +111,14 @@ export default {
                 }else{
                     this.list=res.data.data;
                     // 4创建循环遍历数组并且为每个元素添加cd属性表示商品前复选框的状态
+                    // 加载之前先清空一下
+                    this.$store1.commit('clear');
                     // 注意：先添加 cd属性，再赋值list 顺序
                     for(var item of list){
-                        item.id=false;
+                        // 添加cb属性表示状态
+                        item.cb=false;
+                        // 修改共享购物车中数量值vuex
+                        this.$store1.commit('increment');
                     }
                     // 5 保存购物车数据
                     this.list = list;
