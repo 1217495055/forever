@@ -9,12 +9,17 @@ import register from './views/register'
 import product from './views/product'
 import qq from './views/qq'
 import zhifubao from './views/zhifubao'
-import cart from './views/cart'
+// import cart from './views/cart'
 import detail from './views/detail'
 import detailbuttom from './views/detail_buttom'
 import why from './views/whyselect'
+<<<<<<< HEAD
 import reply from './views/auto_reply'
 import province from './views/province'
+=======
+import MyHome from './views/MyHome'
+import Cart from './views/Cart'
+>>>>>>> 583bd549efe3d968bef122840423566caddcd374
 Vue.use(Router)
 
 export default new Router({
@@ -26,12 +31,17 @@ export default new Router({
     {path:'/register',component:register},
     {path:'/login/qq',component:qq},
     {path:'/login/zhifubao',component:zhifubao},
-    {path:'/cart',component:cart,props:true},
+    // {path:'/cart',component:cart,props:true},
     {path:'/detail/:id',component:detail,props:true},
     {path:'/detailbuttom',component:detailbuttom,props:true},
     {path:'/why',component:why},
+<<<<<<< HEAD
     {path:'/reply',component:reply},
     {path:'/province',component:province},
+=======
+    {path:'/MyHome',component:MyHome},
+    {path:'/Cart',component:Cart},
+>>>>>>> 583bd549efe3d968bef122840423566caddcd374
   ],
   linkActiveClass:'mui-active'
 })

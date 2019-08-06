@@ -174,7 +174,7 @@ export default {
     flex-wrap: wrap;
    }
    .detail.recom>a{
-     width:47%;
+     width:46%;
      height:300px;
      display: flex;
      flex-direction: column;
