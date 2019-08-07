@@ -1,6 +1,6 @@
 <template>
     <div class="kefu_container">
-        <mt-header title="客服" style="background:#ff6600;border-bottom:1px solid #bbb;height:52px;color:#fff;top:2rem;;border-top-left-radius:8px;border-top-right-radius:8px;font-size:14px;">  
+        <mt-header title="客服" style="background:#ff6600;border-bottom:1px solid #bbb;height:52px;color:#fff;top:0rem;;border-top-left-radius:8px;border-top-right-radius:8px;font-size:14px;">  
             <mt-button slot="right" @click="btn1()" style="display:inline-block;text-indent:5px;" class='mui-icon mui-icon-arrowdown'>关闭</mt-button>
         </mt-header>
     
@@ -172,7 +172,7 @@ export default{
     width: 100%;
     height: 500px;
     overflow: auto;
-    margin-top: 52px;
+    margin-top: .2rem;
     padding:5%;
 }
 .kefu_container .content li {
