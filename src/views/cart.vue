@@ -26,7 +26,7 @@
 					<p class="count">数量
 						<span>
 							<i class='mui-icon mui-icon-trash'></i>
-							<i>1</i>
+							<i><input type="text" class="count"></i>
 							<!-- <input type="text"> -->
 							<i>+</i>
 						</span>
@@ -158,7 +158,6 @@ div.none-bg{
 p.count>span{
 	display: inline-block;
 	width: 4.5rem;
-	height:0.95rem;
     border: 1px solid #E9ECF0;
 	margin-left:0.6rem; 
 	background-color: #F7F9FA;
@@ -167,7 +166,7 @@ p.count>span{
 	display: inline-block;
 	border-right:1px solid #E9ECF0 ;
 	width:23%;
-	line-height: 0.95rem;
+	line-height:1rem;
 	text-align: center;
 }
 .count>span>i.mui-icon{
@@ -243,5 +242,10 @@ p.count>span{
 	color: #fff;
 	text-align: center;
 
+}
+i>input.count{
+	border: 0;
+	margin: 0;
+	margin-top: 0 !important;
 }
 </style>

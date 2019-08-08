@@ -170,13 +170,13 @@ export default{
 .kefu_container .content {
     font-size: 14px;
     width: 100%;
-    height: 500px;
+    height: 22rem;
     overflow: auto;
     margin-top: .2rem;
     padding:5%;
 }
 .kefu_container .content li {
-    margin-top: 10px;
+    margin-top: 16px;
     display: block;
     clear: both;
     overflow: hidden;
