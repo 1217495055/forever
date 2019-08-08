@@ -226,7 +226,6 @@ export default {
             })
         },
         province(){
-            // 将市的按钮显示出来，并将县的隐藏
             // 获取省份信息
             this.axios.get('province').then(result=>{
                 if(result.data.status==0){
