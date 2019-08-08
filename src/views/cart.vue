@@ -66,8 +66,10 @@
 			<!-- <div class='selectAll'>
 				全选<input type="checkbox" @change='selectAll'>
 			</div> -->
-			<p class="total f-l">总价：<span>238.00</span></p>
+			<p class="f-l all"><input type="checkbox"> 全选</p>
 			<p class="f-r payment-btn">去结算(<span>1</span>)</p>
+			<p class="total f-r">总价：<span>238.00</span></p>
+			
 		</div>
     </div> 
 </template>
@@ -241,11 +243,20 @@ p.count>span{
 	background: #EE9900;
 	color: #fff;
 	text-align: center;
-
+	margin-left: 1rem;
 }
 i>input.count{
 	border: 0;
 	margin: 0;
 	margin-top: 0 !important;
+}
+.payment>p.all{
+	font-size: .6rem
+}
+p.all>input{
+	width: .66rem;
+    height: .66rem;
+    outline: none;
+    margin: .6rem 0 0 .6rem;
 }
 </style>
