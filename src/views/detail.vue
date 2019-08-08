@@ -138,9 +138,9 @@
                 </div>
                 <!-- 请选择 -->
                 <div class='city_select'>
-                    <div class='active'>请选择</div>
-                    <div class='none'>请选择</div>
-                    <div class='none'>请选择</div>
+                    <div class='active' id='city'>请选择</div>
+                    <div class='none' id='city1'>请选择</div>
+                    <div class='none' id='city2'>请选择</div>
                 </div>
                 <!-- 三级联动 -->
                 <div class='pro_eara'>
@@ -154,7 +154,7 @@
                             <p :data-city='item.cityid' v-text='item.city'></p>
                         </li>
                     </ul>
-                    <ul>
+                    <ul @click='area_info' id='area'>
                         <li v-for='(item,i) of arealist' :key='i'>
                             <p :data-area='item.areaid' v-text='item.area'></p>
                         </li>
@@ -194,11 +194,32 @@ export default {
     this.getinfo();
     },
     methods:{
+        area_info(e){
+            var city2 = document.getElementById('city2');
+            city2.classList.add('active');
+            city2.innerHTML=e.target.innerHTML;
+        },
         pro_info(e){
+            // 将请选择显示为响应的省份
+            var city = document.getElementById('city');
+            var city1 = document.getElementById('city1');
+            city1.style.display='block';
+            city.innerHTML=e.target.innerHTML;
+            var city2 = document.getElementById('city2');
+            city2.style.display='none';
+            var area = document.getElementById('area');
+            area.style.display='none';
             this.pro_id = e.target.dataset.pro;
             this.city();
         },
         city_info(e){
+            var city1 = document.getElementById('city1');
+            var city2 = document.getElementById('city2');
+            city2.style.display='block';
+            city1.classList.add('active');
+            city1.innerHTML=e.target.innerHTML;
+            var area = document.getElementById('area');
+            area.style.display='block';
             this.city_id = e.target.dataset.city;
             this.area();
         },
@@ -207,7 +228,6 @@ export default {
             this.axios.get('area',{params:{id:this.city_id}}).then(result=>{
                 if(result.data.status==0){
                     this.arealist = result.data.message;
-                    console.log(this.citylist)
                 }else{
                     // 失败
                     this.$toast({message :'加载失败'});
@@ -608,7 +628,7 @@ export default {
     font-size: 14px;
     width:30%;
     line-height: 36px;
-    padding: 0 12px;
+    padding: 0 0.5rem;
     font-size: 12px;
     text-align: center;
 }
@@ -638,8 +658,8 @@ export default {
 }
 .detail_province .detail_city .pro_eara ul>li>p{
     font-size: 12px;
-     text-overflow:ellipsis;
-     color:#232628; 
+    text-overflow:ellipsis;
+    color:#232628; 
 }
 </style>
 

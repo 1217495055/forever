@@ -10,6 +10,7 @@ import product from './views/product'
 import qq from './views/qq'
 import zhifubao from './views/zhifubao'
 // import cart from './views/cart'
+import cat from './views/cat'
 import detail from './views/detail'
 import detailbuttom from './views/detail_buttom'
 import why from './views/whyselect'
@@ -36,6 +37,7 @@ export default new Router({
     {path:'/province',component:province},
     {path:'/MyHome',component:MyHome},
     {path:'/Cart',component:Cart},
+    {path:'/cat',component:cat},
   ],
   linkActiveClass:'mui-active'
 })

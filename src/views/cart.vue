@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <header class="my-header clearfix">
-			<i class="mui-icon mui-icon-back f-l"></i>
-			<p>购物车</p>
-		</header>
+    <div class='cart'>
+		<!-- 顶部 -->
+        <div class='cart_header'>
+            <div><span  class='mui-icon mui-icon-arrowleft'></span></div>
+            <div>购物车</div>
+            <div></div>
+        </div>
 		<div class="nonecart hide">
 			<div class="none-bg">
 				<img src="../img/135211231.png"/>
@@ -23,12 +25,13 @@
 					<p class="title">[鲜花]一往情深</p>
 					<p class="count">数量
 						<span>
-							<i>#</i>
+							<i class='mui-icon mui-icon-trash'></i>
 							<i>1</i>
+							<!-- <input type="text"> -->
 							<i>+</i>
 						</span>
 					</p>
-					<p class="price">238.00</p>
+					<p class="price">¥238.00</p>
 				</div>
 			</div>
 		</div>
@@ -60,43 +63,49 @@
 			</div>
 		</div>
 		<div class="payment clearfix">
+			<!-- <div class='selectAll'>
+				全选<input type="checkbox" @change='selectAll'>
+			</div> -->
 			<p class="total f-l">总价：<span>238.00</span></p>
 			<p class="f-r payment-btn">去结算(<span>1</span>)</p>
 		</div>
-    </div>  
+    </div> 
 </template>
 <script>
  import showlist from "./showlist"
 import recommend from './recommend'
+import footer from './footer'
 export default {
+	data(){
+		return {
+			flag:true,
+		}
+	},
 	components: {
 		"showlist":showlist,
 		"my-recommend":recommend,
+		"my-footer":footer,
     },
 }
 </script>
 <style scoped>
-.my-header{
-	width: 100%;
-	position: fixed;
-	left: 0;
-	top: 0;
-    padding: 0 0.64rem;
-    line-height: 2rem;
-    background: #fff;
+.cart{
+    width:100%;
     box-sizing: border-box;
-    box-shadow:  0 0 4px #E9ECF0;
 }
-.my-header i{
-    width: 10%;
-    line-height: 2rem;
-    font-size: 1.2rem;
+.cart .cart_header{
+    display: flex;
+    justify-content: space-between;
+    height:1.8rem;
+    line-height: 1.8rem;
 }
-.my-header p{
-    float: left;
-    width: 80%;
+.cart .cart_header div{
+    width:20%;
     text-align: center;
     font-size: 0.7rem;
+}
+.cart .cart_header div:nth-child(2){
+    width: 60%;
 }
 div.none-bg{
 	margin:2rem 0 .4rem 0;
@@ -118,12 +127,11 @@ div.none-bg{
 	font-size: 0.56rem;
 }
 .cart-details{
-	margin-top: 2rem;
-	
 	background: #fff;
 }
 .cart-details .detail-content{
-	height: 4.5rem;
+	height: 5.5rem;
+	padding-top:0.3rem;
 }
 .cart-details .detail-content>input{
 	width: .8rem;
@@ -132,42 +140,49 @@ div.none-bg{
     margin: 2rem 0 0 .6rem;
 }
 .cart-details .detail-content>img{
-	margin:.3rem .6rem ;
-	width: 3.6rem;
+	margin:auto .6rem ;
+	width: 4.2rem;
 }
 .detail-content .title{
 	margin-top: .3rem ;
+	font-size: 0.6rem;
+	color:#232628;
 }
 .detail-content .count{
-	font-size: 0.56rem;
-	line-height: 1.2rem;
+	font-size: 0.5rem;
+	line-height: 1rem;
+	height:1rem;
+	color:#232628;
+	margin-top:0.6rem;
 }
 p.count>span{
 	display: inline-block;
 	width: 4.5rem;
-    height: 1.2rem;
-    margin-top: .6rem;
-    border: 1px solid #bbb; 
+	height:0.95rem;
+    border: 1px solid #E9ECF0;
+	margin-left:0.6rem; 
+	background-color: #F7F9FA;
 }
 .count>span>i{
 	display: inline-block;
-	height: 1.2rem;
-	border-right:1px solid #bbb ;
+	border-right:1px solid #E9ECF0 ;
+	width:23%;
+	line-height: 0.95rem;
+	text-align: center;
 }
-.count>span>i:first-child{
-	width: 22%;
+.count>span>i.mui-icon{
+	font-size: 16px;
 }
 .count>span>i:last-child{
-	width: 19%;
 	border: 0;
 }
 .count>span>i:nth-child(2){
-	width: 49%;
+	width: 54%;
 	text-align: center;
 }
 .detail-content .price{
 	color:#EE9900;
-	margin-top: .3rem;
+	margin-top: .6rem;
 }
 .cart-details+.recommend{
 	width: 100%;
@@ -206,10 +221,6 @@ p.count>span{
 .recommend-commodity img{
 	width: 100%;
 }
-/* <div class="payment clearfix">
-			<p class="total f-l">总价<span>238.00</span></p>
-			<p class="f-r payment-btn">去结算(<span>1</span>)</p>
-</div> */
 .payment{
 	width: 100%;
 	position: fixed;
