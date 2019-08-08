@@ -75,8 +75,9 @@
             <div class='mui-icon mui-icon-location'></div>
             <div class='se_sity'>
                 <p class='c_ear'>请选择配送地区</p>
+                <p class='c_ear'>请选择配送地区</p>
             </div>
-            <div class='mui-icon mui-icon-more'></div>
+            <div class='mui-icon mui-icon-more' @click='display'></div>
         </div>
         <div class='empty'></div>
         <!-- 价格趋势图 -->
@@ -127,6 +128,41 @@
         </div>
         <my-whyselect></my-whyselect>
         <my-detailfooter></my-detailfooter>
+        <!-- 三级联动 -->
+        <div class='detail_province'>
+            <div class='detail_city'>
+                <!-- 头部 -->
+                <div class='city_title'>
+                    <div>配送至</div>
+                    <div class='mui-icon mui-icon-closeempty' @click='none'></div>
+                </div>
+                <!-- 请选择 -->
+                <div class='city_select'>
+                    <div class='active'>请选择</div>
+                    <div class='none'>请选择</div>
+                    <div class='none'>请选择</div>
+                </div>
+                <!-- 三级联动 -->
+                <div class='pro_eara'>
+                    <ul  @click='pro_info'>
+                        <li v-for='(item,i) of provincelist' :key='i'>
+                            <p :data-pro='item.provinceid' v-text='item.province'></p>
+                        </li>
+                    </ul>
+                    <ul @click='city_info'>
+                        <li v-for='(item,i) of citylist' :key='i'>
+                            <p :data-city='item.cityid' v-text='item.city'></p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li v-for='(item,i) of arealist' :key='i'>
+                            <p :data-area='item.areaid' v-text='item.area'></p>
+                        </li>
+                    </ul>
+                
+                </div>
+            </div>
+        </div>
     </div>
     
 </template>
@@ -147,12 +183,69 @@ export default {
     data(){
         return{
             detailinfo:[],
+            provincelist:[],
+            pro_id:'',
+            citylist:[],
+            arealist:[],
+            city_id:'',
         }
     },
     created(){
     this.getinfo();
     },
     methods:{
+        pro_info(e){
+            this.pro_id = e.target.dataset.pro;
+            this.city();
+        },
+        city_info(e){
+            this.city_id = e.target.dataset.city;
+            this.area();
+        },
+        area(){
+            // 获取县信息
+            this.axios.get('area',{params:{id:this.city_id}}).then(result=>{
+                if(result.data.status==0){
+                    this.arealist = result.data.message;
+                    console.log(this.citylist)
+                }else{
+                    // 失败
+                    this.$toast({message :'加载失败'});
+                }
+            })
+        },
+        city(){
+            // 获取市信息
+            this.axios.get('city',{params:{id:this.pro_id}}).then(result=>{
+                if(result.data.status==0){
+                    this.citylist = result.data.message;
+                }else{
+                    // 失败
+                    this.$toast({message :'加载失败'});
+                }
+            })
+        },
+        province(){
+            // 将市的按钮显示出来，并将县的隐藏
+            // 获取省份信息
+            this.axios.get('province').then(result=>{
+                if(result.data.status==0){
+                    this.provincelist = result.data.message;
+                }else{
+                    // 失败
+                    this.$toast({message :'加载失败'});
+                }
+            })
+        },
+        display(){
+            var liandong = document.getElementsByClassName('detail_province');
+            liandong[0].classList.add('dis_none');
+            this.province();
+        },
+        none(){
+            var liandong = document.getElementsByClassName('detail_province');
+            liandong[0].classList.remove('dis_none');
+        },
         history(){
             this.$router.go(-1);
         },
@@ -188,6 +281,8 @@ export default {
 
 
 <style scoped>
+.detail_city .city_select .none{display: none}
+.detail_city .city_select .block{display: block}
 .detail{
     width:100%;
     box-sizing: border-box;
@@ -210,8 +305,8 @@ export default {
 .detail .media .se_sity{
     width:68%;
 }
-.detail .media .se_sity .c_ear{
-    /* font-size:  */
+.detail .media .se_sity p{
+    font-size: 12px;
 }
 .detail .detail_header{
     height:1.8rem;
@@ -466,6 +561,86 @@ export default {
 }
 .detail .detail_img .img_title1 .last_img{
     height:215px;
+}
+
+.detail_province{
+    width:100%;
+    height:100%;
+    background-color: rgba(35, 38, 40, 0.8);
+    position: fixed;
+    top: 0;
+    display: none;
+    
+}
+.detail_province.dis_none{
+    display: block;
+    z-index: 99999999999;
+}
+.detail_province .detail_city{
+    width:100%;
+    height:60%;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+}
+.detail_province .city_title{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+}
+.detail_province .city_title div:first-child{
+        color: #FF734C;
+        width:90%;
+}
+.detail_province .city_title div.mui-icon{
+    font-size: 34px;
+}
+.detail_province .city_select{
+    padding: 0 4px;
+    border-bottom: 1px solid #F7F9FA;
+    height:1.5rem;
+    display: flex;
+}
+.detail_province .city_select div{ 
+    color: #232628;
+    font-size: 14px;
+    width:30%;
+    line-height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+    text-align: center;
+}
+.detail_province .city_select div.active{
+    color: #FF734C;
+    font-weight: 500;
+    border-bottom:1px solid #FF734C;
+}
+.detail_province .detail_city .pro_eara ul{
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    box-sizing: border-box;
+    width: 30%;
+    margin-bottom: 1rem;
+}
+.detail_province .detail_city .pro_eara{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+}
+.detail_province .detail_city .pro_eara ul>li{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+}
+.detail_province .detail_city .pro_eara ul>li>p{
+    font-size: 12px;
+     text-overflow:ellipsis;
+     color:#232628; 
 }
 </style>
 

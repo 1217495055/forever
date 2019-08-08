@@ -15,6 +15,8 @@ import detailbuttom from './views/detail_buttom'
 import why from './views/whyselect'
 import reply from './views/auto_reply'
 import province from './views/province'
+import MyHome from './views/MyHome'
+import Cart from './views/cart'
 Vue.use(Router)
 
 export default new Router({
